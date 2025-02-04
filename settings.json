@@ -1,0 +1,55 @@
+// VSCode
+{
+  "git.enableSmartCommit": true,
+  "git.openRepositoryInParentFolders": "never",
+  "editor.detectIndentation": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.confirmSync": false,
+  "editor.formatOnSave": true,
+  "editor.fontFamily": "'Monaspace Neon', monospace",
+  "editor.formatOnPaste": false,
+  "editor.lineHeight": 0,
+  "terminal.integrated.fontFamily": "'MonaspiceKr NFM', monospace",
+  "editor.fontLigatures": true,
+  "redhat.telemetry.enabled": false,
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.tsserver.log": "off",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "better-comments.highlightPlainText": true,
+  "vsicons.presets.tsOfficial": true,
+  "vsicons.presets.jsOfficial": true,
+  "vsicons.dontShowNewVersionMessage": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "security.allowedUNCHosts": [
+    "wsl.localhost"
+  ],
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.tree.indent": 4,
+  "workbench.editor.revealIfOpen": true,
+  "workbench.editor.showTabs": "single",
+  "editor.minimap.enabled": false,
+  "workbench.activityBar.location": "top",
+  "vim.camelCaseMotion.enable": true,
+  "vim.useCtrlKeys": false,
+  "files.associations": {
+    "*.vue": "vue"
+  },
+  "projectManager.git.baseFolders": [
+    "\\\\wsl.localhost\\Ubuntu\\home\\matt\\uni",
+    "\\\\wsl.localhost\\Ubuntu\\home\\matt\\dev"
+  ],
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+  "java.format.settings.profile": "\"java.format.settings.url\": \"https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml\",",
+  "workbench.iconTheme": "vscode-icons",
+  "remote.autoForwardPortsSource": "hybrid",
+}
