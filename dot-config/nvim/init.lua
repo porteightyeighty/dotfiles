@@ -90,4 +90,18 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+---------------------------
+-- Command aliases --
+---------------------------
+
+
+-- I really struggle not to keep shift held down while executing these commands, so papering over the cracks with this!
+vim.cmd('command! Wq wq')
+vim.cmd('command! WQ wq')
+vim.cmd('command! W w')
+vim.cmd('command! Q quit')
+
+--
+-- 
+
 
