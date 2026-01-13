@@ -111,8 +111,10 @@ vim.cmd('command! Q quit')
 
 require("config.lazy")
 
+----------------
+-- Treesitter --
+----------------
 
--- Treesitter
 treesitter_ensure_installed = {
     'apex',
     'c',
