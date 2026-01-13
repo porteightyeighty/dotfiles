@@ -2,6 +2,7 @@
 -- Vim Options --
 -----------------
 
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -13,8 +14,7 @@ vim.o.shiftwidth = 4
 
 vim.o.mouse = 'a'
 
--- TODO: turn off once a status line plugin is configured
--- vim.o.showmode = false
+vim.o.showmode = false
 
 vim.schedule(function()
     vim.o.clipboard = 'unnamedplus'
