@@ -4,7 +4,7 @@
 padding = { x = 10, y = 10 }
 decorations = "Buttonless"
 opacity = 0.95
-option_as_alt = "Both"
+option_as_alt = "OnlyRight"
 
 [font]
 size = 14.0
