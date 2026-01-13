@@ -15,14 +15,14 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-
+zinit light Aloxaf/fzf-tab
 
 #Load completions for zsh-completions 
 autoload -U compinit && compinit
 
 #Completion styling 
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-
+zstyle ':completion:*' menu no
 # Persist command history
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
@@ -45,14 +45,12 @@ setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line 
 # Aliases 
 
 alias ls='ls --color'
-
+alias l='ls -lAh --color'
 
 
 #Shell integrations 
 
 eval "$(fzf --zsh)"
-
-export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
 
 eval "$(starship init zsh)"
 export PATH="$HOME/.local/bin:$PATH"
