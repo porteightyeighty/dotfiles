@@ -1,0 +1,19 @@
+right_format = "$time"
+command_timeout=5000
+
+[time]
+disabled = false
+style = "bold bright-black"
+format = "[$time]($style)"
+
+# [line_break]
+# disabled = true
+
+[custom.sf]
+description = "Salesforce extension"
+detect_files = ["sfdx-project.json"]
+style = "bold bright-blue"
+symbol = " "
+command = """value=$(sf config get target-org --json | jq -r '.result[0].value'); if [ "$value" != "null" ]; then echo "$value"; else echo "No Target Org"; fi"""
+format = "using [$symbol$output ](bright-blue)"
+
