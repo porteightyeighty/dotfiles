@@ -67,6 +67,10 @@ vim.o.confirm = true
 -- Basic Keymaps --
 -------------------
 
+-- Visual line movement
+vim.keymap.set('n', 'j', 'gj')
+vim.keymap.set('n', 'k', 'gk')
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
@@ -101,7 +105,10 @@ vim.cmd('command! WQ wq')
 vim.cmd('command! W w')
 vim.cmd('command! Q quit')
 
---
--- 
+-------------------------
+-- Lazy Plugin Manager --
+-------------------------
+
+
 
 
