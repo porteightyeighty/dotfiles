@@ -118,7 +118,7 @@ treesitter_ensure_installed = {
     'c',
     'java',
     'javascript',
-    'jsonc',
+    'json',
     'lua',
     'rust',
     'soql',
@@ -133,3 +133,11 @@ treesitter_ensure_installed = {
 }
 require'nvim-treesitter'.install(treesitter_ensure_installed) 
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { '<filetype>' },
+  callback = function() 
+    vim.treesitter.start() 
+    vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    vim.wo[0][0].foldmethod = 'expr'
+  end,
+})
