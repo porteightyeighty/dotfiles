@@ -109,6 +109,27 @@ vim.cmd('command! Q quit')
 -- Lazy Plugin Manager --
 -------------------------
 
+require("config.lazy")
 
 
+-- Treesitter
+treesitter_ensure_installed = {
+    'apex',
+    'c',
+    'java',
+    'javascript',
+    'jsonc',
+    'lua',
+    'rust',
+    'soql',
+    'sql',
+    'tmux',
+    'vim',
+    'vimdoc',
+    'vue',
+    'xml',
+    'zig',
+    'zsh'
+}
+require'nvim-treesitter'.install(treesitter_ensure_installed) 
 
