@@ -1,0 +1,14 @@
+# Neovim
+dot-config/nvim/spell/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# OS files
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Stow
+*.stow-temp-*
