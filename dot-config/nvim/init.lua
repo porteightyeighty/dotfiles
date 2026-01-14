@@ -112,6 +112,12 @@ vim.cmd('command! Q quit')
 require("config.lazy")
 
 ----------------
+-- LSP Config --
+----------------
+
+require("config.lsp")
+
+----------------
 -- Treesitter --
 ----------------
 
