@@ -110,6 +110,7 @@ vim.cmd('command! Q quit')
 -------------------------
 
 require("config.lazy")
+require("config.mappings")
 
 ----------------
 -- LSP Config --
