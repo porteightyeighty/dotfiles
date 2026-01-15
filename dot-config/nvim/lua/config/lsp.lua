@@ -10,7 +10,6 @@ require("mason-lspconfig").setup({
 	"css_variables",
 	"cssmodules_ls",
 	"html",
-	-- "java_language_server",
 	"jsonls",
 	"lua_ls",
 	"lwc_ls",
