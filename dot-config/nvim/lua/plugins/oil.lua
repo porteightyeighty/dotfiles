@@ -1,3 +1,16 @@
+-- Helper for winbar to show ~ instead of full home path
+local function get_oil_winbar()
+	local oil = require('oil')
+	local dir = oil.get_current_dir()
+	if dir then
+		return dir:gsub('^' .. vim.env.HOME, '~')
+	end
+	return ''
+end
+
+-- Expose globally for v:lua access in winbar
+_G.get_oil_winbar = get_oil_winbar
+
 -- Drill down through directories that only contain a single subdirectory
 local function get_deepest_dir(path)
 	local entries = vim.fn.readdir(path)
@@ -40,7 +53,7 @@ return {
 		watch_for_changes = true,
 		skip_confirm_for_simple_edits = false,
 		win_options = {
-			winbar = "%{v:lua.require('oil').get_current_dir():gsub('^' .. os.getenv('HOME'), '~')}",
+			winbar = "%{v:lua.get_oil_winbar()}",
 		},
 		keymaps = {
 			['<CR>'] = { callback = open_with_drill_down, desc = 'Open with drill-down' },
