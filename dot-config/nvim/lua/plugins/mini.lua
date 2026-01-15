@@ -5,6 +5,7 @@ return {
 		require('mini.snippets').setup({})
 		require('mini.icons').setup({})
 		require('mini.ai').setup({})
+		require('mini.cmdline').setup({})
 		local miniclue = require('mini.clue')
 		miniclue.setup({
 			triggers = {
