@@ -17,7 +17,7 @@ vim.o.mouse = 'a'
 vim.o.showmode = false
 
 vim.schedule(function()
-    vim.o.clipboard = 'unnamedplus'
+	vim.o.clipboard = 'unnamedplus'
 end)
 
 -- when wrapping text, continue at the same indent level
@@ -42,6 +42,8 @@ vim.o.updatetime = 250
 vim.o.splitright = true
 -- horizontal splits
 vim.o.splitbelow = true
+
+vim.o.shiftwidth = 4
 
 -- Displays whitespace where the cursor is.
 vim.o.list = true
@@ -107,43 +109,44 @@ vim.cmd('command! Q quit')
 
 -- Create a new Java project
 vim.api.nvim_create_user_command('JavaNewProject', function()
-    vim.ui.input({ prompt = 'Project name (or path): ' }, function(input)
-        if not input or input == '' then return end
-        local project_dir = vim.fn.fnamemodify(input, ':p')
-        local project_name = vim.fn.fnamemodify(project_dir, ':t')
-        local parent_dir = vim.fn.fnamemodify(project_dir, ':h')
-        local cmd = string.format(
-            'cd %s && mvn archetype:generate -DgroupId=com.%s -DartifactId=%s -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false',
-            vim.fn.shellescape(parent_dir), project_name, project_name
-        )
-        vim.notify('Creating Maven project: ' .. project_name, vim.log.levels.INFO)
-        local output = {}
-        vim.fn.jobstart(cmd, {
-            stdout_buffered = true,
-            stderr_buffered = true,
-            on_stdout = function(_, data)
-                if data then vim.list_extend(output, data) end
-            end,
-            on_stderr = function(_, data)
-                if data then vim.list_extend(output, data) end
-            end,
-            on_exit = function(_, code)
-                if code == 0 then
-                    vim.ui.select({ 'yes', 'no' }, { prompt = 'Project created! Open ' .. project_name .. '?' }, function(choice)
-                        if choice == 'yes' then
-                            vim.cmd('cd ' .. project_dir)
-                            vim.cmd('edit .')
-                        else
-                            vim.notify('Project created at ' .. project_dir, vim.log.levels.INFO)
-                        end
-                    end)
-                else
-                    local msg = table.concat(output, '\n')
-                    vim.notify('Failed to create project (exit ' .. code .. '):\n' .. msg, vim.log.levels.ERROR)
-                end
-            end,
-        })
-    end)
+	vim.ui.input({ prompt = 'Project name (or path): ' }, function(input)
+		if not input or input == '' then return end
+		local project_dir = vim.fn.fnamemodify(input, ':p')
+		local project_name = vim.fn.fnamemodify(project_dir, ':t')
+		local parent_dir = vim.fn.fnamemodify(project_dir, ':h')
+		local cmd = string.format(
+			'cd %s && mvn archetype:generate -DgroupId=com.%s -DartifactId=%s -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false',
+			vim.fn.shellescape(parent_dir), project_name, project_name
+		)
+		vim.notify('Creating Maven project: ' .. project_name, vim.log.levels.INFO)
+		local output = {}
+		vim.fn.jobstart(cmd, {
+			stdout_buffered = true,
+			stderr_buffered = true,
+			on_stdout = function(_, data)
+				if data then vim.list_extend(output, data) end
+			end,
+			on_stderr = function(_, data)
+				if data then vim.list_extend(output, data) end
+			end,
+			on_exit = function(_, code)
+				if code == 0 then
+					vim.ui.select({ 'yes', 'no' }, { prompt = 'Project created! Open ' .. project_name .. '?' },
+						function(choice)
+							if choice == 'yes' then
+								vim.cmd('cd ' .. project_dir)
+								vim.cmd('edit .')
+							else
+								vim.notify('Project created at ' .. project_dir, vim.log.levels.INFO)
+							end
+						end)
+				else
+					local msg = table.concat(output, '\n')
+					vim.notify('Failed to create project (exit ' .. code .. '):\n' .. msg, vim.log.levels.ERROR)
+				end
+			end,
+		})
+	end)
 end, { desc = 'Create a new Java Maven project' })
 
 -------------------------
@@ -164,30 +167,30 @@ require("config.lsp")
 ----------------
 
 treesitter_ensure_installed = {
-    'apex',
-    'c',
-    'java',
-    'javascript',
-    'json',
-    'lua',
-    'rust',
-    'soql',
-    'sql',
-    'tmux',
-    'vim',
-    'vimdoc',
-    'vue',
-    'xml',
-    'zig',
-    'zsh'
+	'apex',
+	'c',
+	'java',
+	'javascript',
+	'json',
+	'lua',
+	'rust',
+	'soql',
+	'sql',
+	'tmux',
+	'vim',
+	'vimdoc',
+	'vue',
+	'xml',
+	'zig',
+	'zsh'
 }
-require'nvim-treesitter'.install(treesitter_ensure_installed) 
+require 'nvim-treesitter'.install(treesitter_ensure_installed)
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { '<filetype>' },
-  callback = function() 
-    vim.treesitter.start() 
-    vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-    vim.wo[0][0].foldmethod = 'expr'
-  end,
+	pattern = { '<filetype>' },
+	callback = function()
+		vim.treesitter.start()
+		vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+		vim.wo[0][0].foldmethod = 'expr'
+	end,
 })

@@ -1,6 +1,6 @@
 return {
-    {"mason-org/mason.nvim"},
-    {"mason-org/mason-lspconfig.nvim"},
+    {"mason-org/mason.nvim", opts = {}},
+    {"mason-org/mason-lspconfig.nvim", opts = {}},
     {"neovim/nvim-lspconfig" },
     {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
