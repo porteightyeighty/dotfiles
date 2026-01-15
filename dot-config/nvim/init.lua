@@ -43,6 +43,7 @@ vim.o.splitright = true
 -- horizontal splits
 vim.o.splitbelow = true
 
+vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 
 -- Displays whitespace where the cursor is.
@@ -64,6 +65,10 @@ vim.o.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
+
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldlevel = 99
 
 -------------------
 -- Basic Keymaps --
@@ -147,11 +152,3 @@ treesitter_ensure_installed = {
 }
 require 'nvim-treesitter'.install(treesitter_ensure_installed)
 
-vim.api.nvim_create_autocmd('FileType', {
-	pattern = { '<filetype>' },
-	callback = function()
-		vim.treesitter.start()
-		vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-		vim.wo[0][0].foldmethod = 'expr'
-	end,
-})
