@@ -105,6 +105,47 @@ vim.cmd('command! WQ wq')
 vim.cmd('command! W w')
 vim.cmd('command! Q quit')
 
+-- Create a new Java project
+vim.api.nvim_create_user_command('JavaNewProject', function()
+    vim.ui.input({ prompt = 'Project name (or path): ' }, function(input)
+        if not input or input == '' then return end
+        local project_dir = vim.fn.fnamemodify(input, ':p')
+        local project_name = vim.fn.fnamemodify(project_dir, ':t')
+        local parent_dir = vim.fn.fnamemodify(project_dir, ':h')
+        local cmd = string.format(
+            'cd %s && mvn archetype:generate -DgroupId=com.%s -DartifactId=%s -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false',
+            vim.fn.shellescape(parent_dir), project_name, project_name
+        )
+        vim.notify('Creating Maven project: ' .. project_name, vim.log.levels.INFO)
+        local output = {}
+        vim.fn.jobstart(cmd, {
+            stdout_buffered = true,
+            stderr_buffered = true,
+            on_stdout = function(_, data)
+                if data then vim.list_extend(output, data) end
+            end,
+            on_stderr = function(_, data)
+                if data then vim.list_extend(output, data) end
+            end,
+            on_exit = function(_, code)
+                if code == 0 then
+                    vim.ui.select({ 'yes', 'no' }, { prompt = 'Project created! Open ' .. project_name .. '?' }, function(choice)
+                        if choice == 'yes' then
+                            vim.cmd('cd ' .. project_dir)
+                            vim.cmd('edit .')
+                        else
+                            vim.notify('Project created at ' .. project_dir, vim.log.levels.INFO)
+                        end
+                    end)
+                else
+                    local msg = table.concat(output, '\n')
+                    vim.notify('Failed to create project (exit ' .. code .. '):\n' .. msg, vim.log.levels.ERROR)
+                end
+            end,
+        })
+    end)
+end, { desc = 'Create a new Java Maven project' })
+
 -------------------------
 -- Lazy Plugin Manager --
 -------------------------
