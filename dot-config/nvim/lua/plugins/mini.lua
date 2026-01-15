@@ -4,6 +4,7 @@ return {
   version = false,
   config = function()
     require('mini.snippets').setup({})
+    require('mini.icons').setup({})
   end,
 }
 }
