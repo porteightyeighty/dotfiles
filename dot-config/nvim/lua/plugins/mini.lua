@@ -37,7 +37,6 @@ return {
 				}
 			},
 			clues = {
-				-- Enhance this by adding descriptions for <Leader> mapping groups
 				miniclue.gen_clues.square_brackets(),
 				miniclue.gen_clues.builtin_completion(),
 				miniclue.gen_clues.g(),
@@ -45,6 +44,16 @@ return {
 				miniclue.gen_clues.registers(),
 				miniclue.gen_clues.windows(),
 				miniclue.gen_clues.z(),
+
+				-- Leader group descriptions
+				{ mode = 'n', keys = '<Leader>c', desc = '+Code' },
+				{ mode = 'x', keys = '<Leader>c', desc = '+Code' },
+				{ mode = 'n', keys = '<Leader>d', desc = '+Debug' },
+				{ mode = 'n', keys = '<Leader>j', desc = '+Java' },
+				{ mode = 'x', keys = '<Leader>j', desc = '+Java' },
+				{ mode = 'n', keys = '<Leader>r', desc = '+Refactor' },
+				{ mode = 'n', keys = '<Leader>s', desc = '+Search' },
+				{ mode = 'n', keys = '<Leader>w', desc = '+Workspace' },
 			},
 		})
 	end,
