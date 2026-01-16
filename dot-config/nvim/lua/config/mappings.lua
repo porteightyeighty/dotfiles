@@ -25,6 +25,12 @@ vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = '[/
 
 vim.keymap.set('n', '\\', '<cmd>Oil --float .<CR>', { desc = 'Open Oil file browser in cwd' })
 
+------------------
+-- Notifications --
+------------------
+
+vim.keymap.set('n', '<leader>nh', function() Snacks.notifier.show_history() end, { desc = '[N]otification [H]istory' })
+
 ---------
 -- DAP --
 ---------
@@ -36,9 +42,9 @@ vim.keymap.set('n', '<F12>', function() require('dap').step_out() end, { desc = 
 vim.keymap.set('n', '<leader>do', function() require('dap').step_over() end, { desc = '[D]ebug: Step [O]ver' })
 vim.keymap.set('n', '<leader>di', function() require('dap').step_into() end, { desc = '[D]ebug: Step [I]nto' })
 vim.keymap.set('n', '<leader>dO', function() require('dap').step_out() end, { desc = '[D]ebug: Step [O]ut' })
-vim.keymap.set('n', '<leader>b', function() require('dap').toggle_breakpoint() end,
+vim.keymap.set('n', '<leader>db', function() require('dap').toggle_breakpoint() end,
 	{ desc = 'Debug: Toggle [B]reakpoint' })
-vim.keymap.set('n', '<leader>B', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+vim.keymap.set('n', '<leader>dB', function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
 	{ desc = 'Debug: Conditional [B]reakpoint' })
 vim.keymap.set('n', '<leader>dr', function() require('dap').repl.open() end, { desc = '[D]ebug: Open [R]EPL' })
 vim.keymap.set('n', '<leader>dl', function() require('dap').run_last() end, { desc = '[D]ebug: Run [L]ast' })
@@ -112,7 +118,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			require("tiny-code-action").code_action()
 		end, { noremap = true, silent = true })
 		-- Workspace
-		vim.keymap.set('n', '<leader>ws', vim.lsp.buf.workspace_symbol,
-			vim.tbl_extend('force', opts, { desc = '[W]orkspace [S]ymbols' }))
+		vim.keymap.set('n', '<leader>cw', vim.lsp.buf.workspace_symbol,
+			vim.tbl_extend('force', opts, { desc = '[C]ode [W]orkspace Symbols' }))
 	end,
 })

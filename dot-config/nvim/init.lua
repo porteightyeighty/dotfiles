@@ -1,74 +1,97 @@
 -----------------
--- Vim Options --
+-- vim options --
 -----------------
-
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- basic settings
+vim.opt.number = true
+vim.opt.relativenumber = false
+vim.opt.cursorline = true
+vim.opt.breakindent = true -- when wrapping text, continue at the same indent level
+vim.opt.wrap = false
+vim.opt.scrolloff = 10     -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.sidescrolloff = 8  -- Keep 8 columns left/right of cursor
 vim.g.have_nerd_font = false
 
-vim.o.number = true
-vim.o.relativenumber = false
-vim.o.shiftwidth = 4
+-- Indentation
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.smartindent = true
+vim.opt.autoindent = true
 
-vim.o.mouse = 'a'
+-- Search settings
 
-vim.o.showmode = false
+vim.opt.ignorecase = true -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+vim.opt.smartcase = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
 
-vim.schedule(function()
-	vim.o.clipboard = 'unnamedplus'
-end)
-
--- when wrapping text, continue at the same indent level
-vim.o.breakindent = true
-
--- log undo history to an undo file
-vim.o.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- show signs in number column if they're relevant, change to add a new column for signs.
-vim.o.signcolumn = 'number'
-
--- If this many milliseconds nothing is typed the swap file will be written to disk
--- default: 4000
-vim.o.updatetime = 250
-
--- Configure how new splits should be opened
--- vertical splits
-vim.o.splitright = true
--- horizontal splits
-vim.o.splitbelow = true
-
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
-
--- Displays whitespace where the cursor is.
-vim.o.list = true
-
+-- Visual sesttings
+vim.opt.termguicolors = true
+vim.opt.signcolumn = 'yes'
+vim.opt.colorcolumn = "100"
+vim.opt.showmatch = true
+vim.opt.matchtime = 2                             -- How long to show matching bracket
+vim.opt.cmdheight = 0                             -- Command line height
+vim.opt.completeopt = "menuone,noinsert,noselect" -- Completion options
+vim.opt.showmode = false                          -- Don't show mode in command line
+vim.opt.pumheight = 10                            -- Popup menu height
+vim.opt.pumblend = 10                             -- Popup menu transparency
+vim.opt.winblend = 0                              -- Floating window transparency
+vim.opt.conceallevel = 0                          -- Don't hide markup
+vim.opt.concealcursor = ""                        -- Don't hide cursor line markup
+vim.opt.lazyredraw = true                         -- Don't redraw during macros
+vim.opt.synmaxcol = 300                           -- Syntax highlighting limit
+vim.opt.list = true                               -- Displays whitespace where the cursor is.
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.g.tpipeline_autoembed = 0
+
+-- File handling
+vim.opt.backup = false      -- Don't create backup files
+vim.opt.writebackup = false -- Don't create backup before writing
+vim.opt.swapfile = true
+vim.opt.directory = vim.fn.expand("~/.local/state/nvim/swap") .. "//"
+vim.opt.undofile = true                           -- Persistent undo
+vim.opt.undodir = vim.fn.expand("~/.vim/undodir") -- Undo directory
+vim.opt.updatetime = 300                          -- Faster completion
+vim.opt.timeoutlen = 500                          -- Key timeout duration
+vim.opt.ttimeoutlen = 0                           -- Key code timeout
+vim.opt.autoread = true                           -- Auto reload files changed outside vim
+vim.opt.autowrite = false                         -- Don't auto save
+
+-- Behavior settings
+vim.opt.hidden = true                   -- Allow hidden buffers
+vim.opt.errorbells = false              -- No error bells
+vim.opt.backspace = "indent,eol,start"  -- Better backspace behavior
+vim.opt.autochdir = false               -- Don't auto change directory
+vim.opt.selection = "exclusive"         -- Selection behavior
+vim.opt.mouse = "a"                     -- Enable mouse support
+vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
+vim.opt.modifiable = true               -- Allow buffer modifications
+vim.opt.encoding = "UTF-8"              -- Set encoding
+
+-- Split behaviour
+vim.opt.splitright = true -- vertical splits
+vim.opt.splitbelow = true -- horizontal splits
+
+-- Cursor settings
+-- vim.opt.guicursor = { "a:blinkwait700-blinkoff400-blinkon400" }
 
 -- preview substitions (:%s/foo/bar)
-vim.o.inccommand = 'split'
-
---highlight current line
-vim.o.cursorline = true
-
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
+vim.opt.inccommand = 'split'
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
-vim.o.confirm = true
+vim.opt.confirm = true
 
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.o.foldlevel = 99
+-- Fold Options
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldlevel = 99
 
 -------------------
 -- Basic Keymaps --
@@ -101,6 +124,26 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Y to EOL
+vim.keymap.set("n", "Y", "y$", { desc = "Yank to end of line" })
+
+-- Center screen when jumping
+vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result (centered)" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
+
+-- Buffer navigation
+vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
+
+-- Splitting & Resizing
+vim.keymap.set("n", "<leader>wv", ":vsplit<CR>", { desc = "Split [w]indow [v]ertically" })
+vim.keymap.set("n", "<leader>wh", ":split<CR>", { desc = "Split [w]indow [h]orizontally" })
+vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 ---------------------------
 -- Command aliases --
 ---------------------------
@@ -144,11 +187,10 @@ treesitter_ensure_installed = {
 	'sql',
 	'tmux',
 	'vim',
-	'vimdoc',
+	'vim.opt.',
 	'vue',
 	'xml',
 	'zig',
 	'zsh'
 }
 require 'nvim-treesitter'.install(treesitter_ensure_installed)
-

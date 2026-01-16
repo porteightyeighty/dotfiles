@@ -2,10 +2,7 @@ return {
 	'nvim-mini/mini.nvim',
 	version = false,
 	config = function()
-		require('mini.snippets').setup({})
-		require('mini.icons').setup({})
 		require('mini.ai').setup({})
-		require('mini.cmdline').setup({})
 		local miniclue = require('mini.clue')
 		miniclue.setup({
 			triggers = {
@@ -53,8 +50,12 @@ return {
 				{ mode = 'x', keys = '<Leader>j', desc = '+Java' },
 				{ mode = 'n', keys = '<Leader>r', desc = '+Refactor' },
 				{ mode = 'n', keys = '<Leader>s', desc = '+Search' },
-				{ mode = 'n', keys = '<Leader>w', desc = '+Workspace' },
+				{ mode = 'n', keys = '<Leader>w', desc = '+Window' },
 			},
 		})
+		-- require('mini.cmdline').setup({})
+		require('mini.icons').setup({})
+		require('mini.pairs').setup({})
+		require('mini.snippets').setup({})
 	end,
 }
