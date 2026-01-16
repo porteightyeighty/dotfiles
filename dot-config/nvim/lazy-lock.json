@@ -30,5 +30,6 @@
   "telescope.nvim": { "branch": "master", "commit": "3333a52ff548ba0a68af6d8da1e54f9cd96e9179" },
   "terracotta.nvim": { "branch": "main", "commit": "051dd59c61e353a76bad40cab0b75e2912a66d3a" },
   "tiny-code-action.nvim": { "branch": "main", "commit": "f4a154569146d29fd4661ae289d83c4378135736" },
-  "vim-tmux-navigator": { "branch": "master", "commit": "c45243dc1f32ac6bcf6068e5300f3b2b237e576a" }
+  "vim-tmux-navigator": { "branch": "master", "commit": "c45243dc1f32ac6bcf6068e5300f3b2b237e576a" },
+  "vim-tpipeline": { "branch": "master", "commit": "bc6dfc10e26a8dd1ec2f0512050a8a0afaa9d090" }
 }
