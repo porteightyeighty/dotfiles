@@ -137,6 +137,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 -- Buffer navigation
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bx", ":bdelete<CR>", { desc = "Close buffer" })
 
 -- Splitting & Resizing
 vim.keymap.set("n", "<leader>wv", ":vsplit<CR>", { desc = "Split [w]indow [v]ertically" })
