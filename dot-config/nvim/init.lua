@@ -7,12 +7,13 @@ vim.g.maplocalleader = ' '
 
 -- basic settings
 vim.opt.number = true
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.breakindent = true -- when wrapping text, continue at the same indent level
-vim.opt.wrap = false
-vim.opt.scrolloff = 10     -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.sidescrolloff = 8  -- Keep 8 columns left/right of cursor
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.scrolloff = 10    -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
 vim.g.have_nerd_font = false
 
 -- Indentation
@@ -144,10 +145,55 @@ vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height
 vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+
+------------------
+-- Autocommands --
+------------------
+
+local augroup = vim.api.nvim_create_augroup("UserConfig", {})
+
+-- Highlight yanked text
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = augroup,
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
+
+
+-- Return to last edit position when opening files
+vim.api.nvim_create_autocmd("BufReadPost", {
+	group = augroup,
+	callback = function()
+		local mark = vim.api.nvim_buf_get_mark(0, '"')
+		local lcount = vim.api.nvim_buf_line_count(0)
+		local line = mark[1]
+		local ft = vim.bo.filetype
+		if line > 0 and line <= lcount
+			and vim.fn.index({ "commit", "gitrebase", "xxd" }, ft) == -1
+			and not vim.o.diff then
+			pcall(vim.api.nvim_win_set_cursor, 0, mark)
+		end
+	end,
+})
+
+-- Set filetype-specific settings
+vim.api.nvim_create_autocmd("FileType", {
+	group = augroup,
+	pattern = { "lua", "python" },
+	callback = function()
+		vim.opt_local.tabstop = 4
+		vim.opt_local.shiftwidth = 4
+	end,
+})
+
+
+
+
+
 ---------------------------
 -- Command aliases --
 ---------------------------
-
 
 -- I really struggle not to keep shift held down while executing these commands, so papering over the cracks with this!
 vim.cmd('command! Wq wq')
@@ -187,7 +233,6 @@ treesitter_ensure_installed = {
 	'sql',
 	'tmux',
 	'vim',
-	'vim.opt.',
 	'vue',
 	'xml',
 	'zig',
