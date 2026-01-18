@@ -69,7 +69,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 		-- Documentation
 		vim.keymap.set('n', 'K', vim.lsp.buf.hover, vim.tbl_extend('force', opts, { desc = 'Hover Documentation' }))
-		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,
+		vim.keymap.set('n', '<C-K>', vim.lsp.buf.signature_help,
 			vim.tbl_extend('force', opts, { desc = 'Signature Help' }))
 
 		-- Refactoring
