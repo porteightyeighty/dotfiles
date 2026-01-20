@@ -13,6 +13,7 @@ return {
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
+
 		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
 		-- 'super-tab' for mappings similar to vscode (tab to accept)
 		-- 'enter' for enter to accept
@@ -27,7 +28,7 @@ return {
 		-- C-k: Toggle signature help (if signature.enabled = true)
 		--
 		-- See :h blink-cmp-config-keymap for defining your own keymap
-		keymap = { preset = 'default' },
+		keymap = { preset = 'super-tab' },
 
 		appearance = {
 			-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -37,8 +38,14 @@ return {
 
 		-- (Default) Only show the documentation popup when manually triggered
 		completion = {
+			ghost_text = { enabled = true, show_without_selection = true, },
+			trigger = {
+				show_on_backspace = true,
+				show_in_snippet = false
+			},
 			menu = {
 				draw = {
+
 					components = {
 						kind_icon = {
 							text = function(ctx)
@@ -51,6 +58,7 @@ return {
 								return hl
 							end,
 						},
+
 						kind = {
 							-- (optional) use highlights from mini.icons
 							highlight = function(ctx)
@@ -60,6 +68,7 @@ return {
 						}
 					}
 				}
+
 			},
 			documentation = { auto_show = false }
 		},
