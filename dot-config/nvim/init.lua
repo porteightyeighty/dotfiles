@@ -114,10 +114,18 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Disable arrow keys in normal mode
-vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set("n", "<left>", function()
+	vim.notify("Use h to move!!")
+end)
+vim.keymap.set("n", "<right>", function()
+	vim.notify("Use l to move!!")
+end)
+vim.keymap.set("n", "<up>", function()
+	vim.notify("Use h to move!!")
+end)
+vim.keymap.set("n", "<down>", function()
+	vim.notify("use k to move!!")
+end)
 
 --  Use CTRL+<hjkl> to switch between windows
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
