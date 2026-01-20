@@ -2,8 +2,8 @@
 -- vim options --
 -----------------
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- basic settings
 vim.opt.number = true
@@ -12,7 +12,7 @@ vim.opt.cursorline = true
 vim.opt.breakindent = true -- when wrapping text, continue at the same indent level
 vim.opt.wrap = true
 vim.opt.linebreak = true
-vim.opt.scrolloff = 10    -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
 vim.g.have_nerd_font = false
 
@@ -32,47 +32,47 @@ vim.opt.incsearch = true
 
 -- Visual sesttings
 vim.opt.termguicolors = true
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "100"
 vim.opt.showmatch = true
-vim.opt.matchtime = 2                             -- How long to show matching bracket
-vim.opt.cmdheight = 0                             -- Command line height
+vim.opt.matchtime = 2 -- How long to show matching bracket
+vim.opt.cmdheight = 0 -- Command line height
 vim.opt.completeopt = "menuone,noinsert,noselect" -- Completion options
-vim.opt.showmode = false                          -- Don't show mode in command line
-vim.opt.pumheight = 10                            -- Popup menu height
-vim.opt.pumblend = 10                             -- Popup menu transparency
-vim.opt.winblend = 0                              -- Floating window transparency
-vim.opt.conceallevel = 0                          -- Don't hide markup
-vim.opt.concealcursor = ""                        -- Don't hide cursor line markup
-vim.opt.lazyredraw = true                         -- Don't redraw during macros
-vim.opt.synmaxcol = 300                           -- Syntax highlighting limit
-vim.opt.list = true                               -- Displays whitespace where the cursor is.
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.showmode = false -- Don't show mode in command line
+vim.opt.pumheight = 10 -- Popup menu height
+vim.opt.pumblend = 10 -- Popup menu transparency
+vim.opt.winblend = 0 -- Floating window transparency
+vim.opt.conceallevel = 0 -- Don't hide markup
+vim.opt.concealcursor = "" -- Don't hide cursor line markup
+vim.opt.lazyredraw = true -- Don't redraw during macros
+vim.opt.synmaxcol = 300 -- Syntax highlighting limit
+vim.opt.list = true -- Displays whitespace where the cursor is.
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.g.tpipeline_autoembed = 0
 
 -- File handling
-vim.opt.backup = false      -- Don't create backup files
+vim.opt.backup = false -- Don't create backup files
 vim.opt.writebackup = false -- Don't create backup before writing
 vim.opt.swapfile = true
 vim.opt.directory = vim.fn.expand("~/.local/state/nvim/swap") .. "//"
-vim.opt.undofile = true                           -- Persistent undo
+vim.opt.undofile = true -- Persistent undo
 vim.opt.undodir = vim.fn.expand("~/.vim/undodir") -- Undo directory
-vim.opt.updatetime = 300                          -- Faster completion
-vim.opt.timeoutlen = 500                          -- Key timeout duration
-vim.opt.ttimeoutlen = 0                           -- Key code timeout
-vim.opt.autoread = true                           -- Auto reload files changed outside vim
-vim.opt.autowrite = false                         -- Don't auto save
+vim.opt.updatetime = 300 -- Faster completion
+vim.opt.timeoutlen = 500 -- Key timeout duration
+vim.opt.ttimeoutlen = 0 -- Key code timeout
+vim.opt.autoread = true -- Auto reload files changed outside vim
+vim.opt.autowrite = false -- Don't auto save
 
 -- Behavior settings
-vim.opt.hidden = true                   -- Allow hidden buffers
-vim.opt.errorbells = false              -- No error bells
-vim.opt.backspace = "indent,eol,start"  -- Better backspace behavior
-vim.opt.autochdir = false               -- Don't auto change directory
-vim.opt.selection = "exclusive"         -- Selection behavior
-vim.opt.mouse = "a"                     -- Enable mouse support
+vim.opt.hidden = true -- Allow hidden buffers
+vim.opt.errorbells = false -- No error bells
+vim.opt.backspace = "indent,eol,start" -- Better backspace behavior
+vim.opt.autochdir = false -- Don't auto change directory
+vim.opt.selection = "exclusive" -- Selection behavior
+vim.opt.mouse = "a" -- Enable mouse support
 vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
-vim.opt.modifiable = true               -- Allow buffer modifications
-vim.opt.encoding = "UTF-8"              -- Set encoding
+vim.opt.modifiable = true -- Allow buffer modifications
+vim.opt.encoding = "UTF-8" -- Set encoding
 
 -- Split behaviour
 vim.opt.splitright = true -- vertical splits
@@ -82,7 +82,7 @@ vim.opt.splitbelow = true -- horizontal splits
 -- vim.opt.guicursor = { "a:blinkwait700-blinkoff400-blinkon400" }
 
 -- preview substitions (:%s/foo/bar)
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
@@ -90,8 +90,8 @@ vim.opt.inccommand = 'split'
 vim.opt.confirm = true
 
 -- Fold Options
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevel = 99
 
 -------------------
@@ -99,11 +99,11 @@ vim.opt.foldlevel = 99
 -------------------
 
 -- Visual line movement
-vim.keymap.set('n', 'j', 'gj')
-vim.keymap.set('n', 'k', 'gk')
+vim.keymap.set("n", "j", "gj")
+vim.keymap.set("n", "k", "gk")
 
 -- Clear highlights on search when pressing <Esc> in normal mode
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -111,7 +111,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Disable arrow keys in normal mode
 vim.keymap.set("n", "<left>", function()
@@ -128,10 +128,10 @@ vim.keymap.set("n", "<down>", function()
 end)
 
 --  Use CTRL+<hjkl> to switch between windows
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Y to EOL
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to end of line" })
@@ -169,7 +169,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-
 -- Return to last edit position when opening files
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = augroup,
@@ -178,9 +177,12 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		local lcount = vim.api.nvim_buf_line_count(0)
 		local line = mark[1]
 		local ft = vim.bo.filetype
-		if line > 0 and line <= lcount
+		if
+			line > 0
+			and line <= lcount
 			and vim.fn.index({ "commit", "gitrebase", "xxd" }, ft) == -1
-			and not vim.o.diff then
+			and not vim.o.diff
+		then
 			pcall(vim.api.nvim_win_set_cursor, 0, mark)
 		end
 	end,
@@ -196,19 +198,15 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-
-
-
-
 ---------------------------
 -- Command aliases --
 ---------------------------
 
 -- I really struggle not to keep shift held down while executing these commands, so papering over the cracks with this!
-vim.cmd('command! Wq wq')
-vim.cmd('command! WQ wq')
-vim.cmd('command! W w')
-vim.cmd('command! Q quit')
+vim.cmd("command! Wq wq")
+vim.cmd("command! WQ wq")
+vim.cmd("command! W w")
+vim.cmd("command! Q quit")
 
 -- Java project scaffolding
 require("config.java").setup()
@@ -231,20 +229,21 @@ require("config.lsp")
 ----------------
 
 treesitter_ensure_installed = {
-	'apex',
-	'c',
-	'java',
-	'javascript',
-	'json',
-	'lua',
-	'rust',
-	'soql',
-	'sql',
-	'tmux',
-	'vim',
-	'vue',
-	'xml',
-	'zig',
-	'zsh'
+	"apex",
+	"c",
+	"java",
+	"javascript",
+	"json",
+	"lua",
+	"rust",
+	"soql",
+	"sosl",
+	"sql",
+	"tmux",
+	"vim",
+	"vue",
+	"xml",
+	"zig",
+	"zsh",
 }
-require 'nvim-treesitter'.install(treesitter_ensure_installed)
+require("nvim-treesitter").install(treesitter_ensure_installed)
