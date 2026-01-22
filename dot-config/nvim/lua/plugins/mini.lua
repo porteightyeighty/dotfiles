@@ -47,8 +47,6 @@ return {
 				{ mode = 'n', keys = '<Leader>c', desc = '+Code' },
 				{ mode = 'x', keys = '<Leader>c', desc = '+Code' },
 				{ mode = 'n', keys = '<Leader>d', desc = '+Debug' },
-				{ mode = 'n', keys = '<Leader>j', desc = '+Java' },
-				{ mode = 'x', keys = '<Leader>j', desc = '+Java' },
 				{ mode = 'n', keys = '<Leader>r', desc = '+Refactor' },
 				{ mode = 'n', keys = '<Leader>s', desc = '+Search' },
 				{ mode = 'n', keys = '<Leader>w', desc = '+Window' },
