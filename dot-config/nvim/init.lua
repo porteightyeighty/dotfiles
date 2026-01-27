@@ -48,7 +48,6 @@ vim.opt.lazyredraw = true                         -- Don't redraw during macros
 vim.opt.synmaxcol = 300                           -- Syntax highlighting limit
 vim.opt.list = true                               -- Displays whitespace where the cursor is.
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-vim.g.tpipeline_autoembed = 0
 
 -- File handling
 vim.opt.backup = false      -- Don't create backup files
