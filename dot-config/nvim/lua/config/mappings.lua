@@ -120,5 +120,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		-- Workspace
 		vim.keymap.set('n', '<leader>cw', vim.lsp.buf.workspace_symbol,
 			vim.tbl_extend('force', opts, { desc = '[C]ode [W]orkspace Symbols' }))
+
+		-- Inlay hints
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		if client and client.supports_method('textDocument/inlayHint') then
+			vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+			vim.keymap.set('n', '<leader>ch', function()
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
+			end, vim.tbl_extend('force', opts, { desc = '[C]ode Inlay [H]ints Toggle' }))
+		end
 	end,
 })
