@@ -208,8 +208,6 @@ vim.cmd("command! WQ wq")
 vim.cmd("command! W w")
 vim.cmd("command! Q quit")
 
--- Java project scaffolding
-require("config.java").setup()
 
 -------------------------
 -- Lazy Plugin Manager --
