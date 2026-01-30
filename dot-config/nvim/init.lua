@@ -17,9 +17,9 @@ vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
 vim.g.have_nerd_font = false
 
 -- Indentation
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
+-- vim.opt.tabstop = 2
+-- vim.opt.shiftwidth = 2
+-- vim.opt.softtabstop = 2
 vim.opt.smartindent = true
 vim.opt.autoindent = true
 
@@ -35,7 +35,8 @@ vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "100"
 vim.opt.showmatch = true
-vim.opt.matchtime = 2                             -- How long to show matching bracket
+vim.opt.matchtime = 2 -- How long to show matching bracket
+vim.cmd.colorscheme("retrobox")
 -- vim.opt.cmdheight = 1                             -- Command line height
 vim.opt.completeopt = "menuone,noinsert,noselect" -- Completion options
 vim.opt.showmode = false                          -- Don't show mode in command line
