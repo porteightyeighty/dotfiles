@@ -44,17 +44,18 @@ return {
 				miniclue.gen_clues.z(),
 
 				-- Leader group descriptions
-				{ mode = 'n', keys = '<Leader>c', desc = '+Code' },
-				{ mode = 'x', keys = '<Leader>c', desc = '+Code' },
-				{ mode = 'n', keys = '<Leader>d', desc = '+Debug' },
-				{ mode = 'n', keys = '<Leader>r', desc = '+Refactor' },
-				{ mode = 'n', keys = '<Leader>s', desc = '+Search' },
-				{ mode = 'n', keys = '<Leader>w', desc = '+Window' },
+				{ mode = "n", keys = "<Leader>c", desc = "+Code" },
+				{ mode = "x", keys = "<Leader>c", desc = "+Code" },
+				{ mode = "n", keys = "<Leader>d", desc = "+Debug" },
+				{ mode = "n", keys = "<Leader>r", desc = "+Refactor" },
+				{ mode = "n", keys = "<Leader>s", desc = "+Search" },
+				{ mode = "n", keys = "<Leader>w", desc = "+Window" },
 			},
 		})
 		-- require('mini.cmdline').setup({})
 		require("mini.icons").setup({})
-		require("mini.pairs").setup({})
+		require("mini.jump").setup({})
+		require("mini.jump2d").setup({})
 		require("mini.snippets").setup({})
 		require("mini.surround").setup({})
 	end,
