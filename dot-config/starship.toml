@@ -11,9 +11,8 @@ format = "[$time]($style)"
 
 [custom.sf]
 description = "Salesforce extension"
-detect_files = ["sfdx-project.json"]
+when = """case $PWD in /usr/*|/tmp/*|/var/*) exit 1;; esac; d=$PWD; i=0; while [ "$d" != "/" ] && [ $i -lt 15 ]; do [ -f "$d/sfdx-project.json" ] && exit 0; d=$(dirname "$d"); i=$((i+1)); done; exit 1"""
 style = "bold bright-blue"
-symbol = " "
-command = """value=$(sf config get target-org --json | jq -r '.result[0].value'); if [ "$value" != "null" ]; then echo "$value"; else echo "No Target Org"; fi"""
+symbol = "☁ "
+command = """d=$PWD; i=0; while [ "$d" != "/" ] && [ $i -lt 15 ]; do [ -f "$d/sfdx-project.json" ] && break; d=$(dirname "$d"); i=$((i+1)); done; jq -r '.["target-org"] // empty' "$d/.sf/config.json" 2>/dev/null || jq -r '.defaultusername // empty' "$d/.sfdx/sfdx-config.json" 2>/dev/null"""
 format = "using [$symbol$output ](bright-blue)"
-
