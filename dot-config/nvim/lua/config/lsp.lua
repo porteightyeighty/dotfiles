@@ -15,7 +15,7 @@ require("mason-lspconfig").setup({
 	"lwc_ls",
 	"marksman", --markdown
 	"nginx_language_server",
-	"pylsp", --python
+	"pyright", --python
 	"rust_analyzer",
 	"tombi", --toml
 	"ts_ls",
