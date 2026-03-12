@@ -95,6 +95,21 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevel = 99
 
+-- Salesforce filetype detection
+vim.filetype.add({
+	extension = {
+		cls = function(path)
+			-- Only treat .cls as Apex if inside a Salesforce project
+			if vim.fn.findfile("sfdx-project.json", vim.fn.fnamemodify(path, ":h") .. ";") ~= "" then
+				return "apex"
+			end
+			-- Fall through to default (LaTeX \documentclass)
+		end,
+		trigger = "apex",
+		apex = "apex",
+	},
+})
+
 -------------------
 -- Basic Keymaps --
 -------------------
@@ -192,7 +207,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 -- Set filetype-specific settings
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
-	pattern = { "lua", "python" },
+	pattern = { "lua", "python", "apex" },
 	callback = function()
 		vim.opt_local.tabstop = 4
 		vim.opt_local.shiftwidth = 4
