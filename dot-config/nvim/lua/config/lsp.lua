@@ -3,7 +3,6 @@ require("mason-lspconfig").setup({
     -- names from 
     -- https://github.com/neovim/nvim-lspconfig/tree/master/lsp
     ensure_installed = {
-	-- "apex_ls",
 	"bashls",
 	"clangd",
 	"cssls",
@@ -25,6 +24,15 @@ require("mason-lspconfig").setup({
 	"zls" --zig
     }
 })
+
+-- Apex LSP (installed via mason-tool-installer, not mason-lspconfig)
+vim.lsp.config('apex_ls', {
+    capabilities = require('blink.cmp').get_lsp_capabilities(),
+    apex_jar_path = vim.fn.stdpath("data") .. "/mason/share/apex-language-server/apex-jorje-lsp.jar",
+    apex_enable_semantic_errors = true,
+    filetypes = { "apex", "apexcode", "trigger" },
+})
+vim.lsp.enable('apex_ls')
 
 vim.diagnostic.config({
   virtual_text = true,
