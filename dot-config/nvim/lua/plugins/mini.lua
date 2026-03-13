@@ -50,6 +50,7 @@ return {
 				{ mode = "n", keys = "<Leader>r", desc = "+Refactor" },
 				{ mode = "n", keys = "<Leader>s", desc = "+Search" },
 				{ mode = "n", keys = "<Leader>w", desc = "+Window" },
+				{ mode = "n", keys = "<Leader>S", desc = "+Salesforce" },
 			},
 		})
 		-- require('mini.cmdline').setup({})
