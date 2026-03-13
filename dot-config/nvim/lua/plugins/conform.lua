@@ -19,8 +19,14 @@ return { -- Autoformat
 			-- have a well standardized coding style. You can add additional
 			-- languages here or re-enable it for the disabled ones.
 			local disable_filetypes = { c = true, cpp = true }
+			local slow_filetypes = { apex = true }
 			if disable_filetypes[vim.bo[bufnr].filetype] then
 				return nil
+			elseif slow_filetypes[vim.bo[bufnr].filetype] then
+				return {
+					timeout_ms = 3000,
+					lsp_format = "fallback",
+				}
 			else
 				return {
 					timeout_ms = 500,
@@ -32,9 +38,20 @@ return { -- Autoformat
 			lua = { "stylua" },
 			-- Conform can also run multiple formatters sequentially
 			python = { "ruff" },
+			apex = { "prettier" },
 			--
 			-- You can use 'stop_after_first' to run the first available formatter from the list
 			-- javascript = { "prettierd", "prettier", stop_after_first = true },
+		},
+		formatters = {
+			prettier = {
+				prepend_args = function(_, ctx)
+					if vim.bo[ctx.buf].filetype == "apex" then
+						return { "--plugin", "prettier-plugin-apex" }
+					end
+					return {}
+				end,
+			},
 		},
 	},
 }
