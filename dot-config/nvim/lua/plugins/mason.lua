@@ -19,6 +19,8 @@ return {
         config = function()
             require("mason-tool-installer").setup({
                 ensure_installed = {
+                    -- Salesforce
+                    "apex-language-server",
                     -- Java development
                     "jdtls",
                     "java-debug-adapter",
