@@ -237,26 +237,3 @@ require("config.mappings")
 
 require("config.lsp")
 
-----------------
--- Treesitter --
-----------------
-
-treesitter_ensure_installed = {
-	"apex",
-	"c",
-	"java",
-	"javascript",
-	"json",
-	"lua",
-	"rust",
-	"soql",
-	"sosl",
-	"sql",
-	"tmux",
-	"vim",
-	"vue",
-	"xml",
-	"zig",
-	"zsh",
-}
-require("nvim-treesitter").install(treesitter_ensure_installed)
