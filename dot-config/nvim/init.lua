@@ -203,6 +203,20 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
+-- Aura component filetype detection (path pattern is the discriminator)
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	group = augroup,
+	pattern = {
+		"*/aura/*/*.cmp",
+		"*/aura/*/*.app",
+		"*/aura/*/*.evt",
+		"*/aura/*/*.intf",
+	},
+	callback = function(args)
+		vim.bo[args.buf].filetype = "html"
+	end,
+})
+
 -- Set filetype-specific settings
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
