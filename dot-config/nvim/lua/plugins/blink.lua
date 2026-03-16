@@ -4,6 +4,7 @@ return {
 	-- optional: provides snippets for the snippet source
 	dependencies = {
 		"rafamadriz/friendly-snippets",
+		"nvim-mini/mini.nvim",
 		{
 			"xiaket/codeium.nvim",
 			dependencies = {
@@ -32,6 +33,8 @@ return {
 		-- C-space: Open menu or open docs if already open
 		-- C-n/C-p or Up/Down: Select next/previous item
 		-- C-e: Hide menu
+
+		snippets = { preset = "mini_snippets" },
 
 		signature = { enabled = true },
 		-- C-k: Toggle signature help (if signature.enabled = true)
