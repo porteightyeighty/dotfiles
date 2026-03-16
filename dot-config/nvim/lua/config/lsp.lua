@@ -25,11 +25,23 @@ require("mason-lspconfig").setup({
     }
 })
 
+-- Prevent html LSP from attaching to Aura component files (lwc_ls handles those)
+vim.lsp.config('html', {
+    root_dir = function(bufnr, on_dir)
+        local path = vim.api.nvim_buf_get_name(bufnr)
+        if path:find("/aura/", 1, true) then
+            return
+        end
+        on_dir(vim.fn.getcwd())
+    end,
+})
+
 -- Apex LSP (installed via mason-tool-installer, not mason-lspconfig)
 vim.lsp.config('apex_ls', {
     capabilities = require('blink.cmp').get_lsp_capabilities(),
     apex_jar_path = vim.fn.stdpath("data") .. "/mason/share/apex-language-server/apex-jorje-lsp.jar",
     apex_enable_semantic_errors = true,
+    apex_jvm_max_heap = "4096m",
     filetypes = { "apex", "apexcode", "trigger" },
 })
 vim.lsp.enable('apex_ls')
