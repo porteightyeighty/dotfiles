@@ -51,13 +51,22 @@ return {
 				{ mode = "n", keys = "<Leader>s", desc = "+Search" },
 				{ mode = "n", keys = "<Leader>w", desc = "+Window" },
 				{ mode = "n", keys = "<Leader>S", desc = "+Salesforce" },
+			{ mode = "n", keys = "<Leader>Sn", desc = "+New" },
 			},
 		})
 		-- require('mini.cmdline').setup({})
 		require("mini.icons").setup({})
 		require("mini.jump").setup({})
 		require("mini.jump2d").setup({})
-		require("mini.snippets").setup({})
+		local gen_loader = require("mini.snippets").gen_loader
+		require("mini.snippets").setup({
+			snippets = {
+				-- Load language-matched snippets from friendly-snippets (on runtimepath)
+				gen_loader.from_runtime("snippets"),
+				-- Load user snippets from ~/.config/nvim/snippets/{lang}.json
+				gen_loader.from_lang(),
+			},
+		})
 		require("mini.surround").setup({})
 	end,
 }

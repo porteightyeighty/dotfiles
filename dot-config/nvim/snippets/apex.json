@@ -1,0 +1,381 @@
+{
+  "Class Definition": {
+    "prefix": "class",
+    "body": [
+      "public with sharing class ${1:ClassName} {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Class definition with sharing"
+  },
+  "Interface Definition": {
+    "prefix": "interface",
+    "body": [
+      "public interface ${1:InterfaceName} {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Interface definition"
+  },
+  "Enum Definition": {
+    "prefix": "enum",
+    "body": [
+      "public enum ${1:EnumName} {",
+      "\t${2:VALUE1}, ${3:VALUE2}",
+      "}"
+    ],
+    "description": "Enum definition"
+  },
+  "System.debug": {
+    "prefix": "sld",
+    "body": "System.debug(${1:value});",
+    "description": "System.debug statement"
+  },
+  "Assert.areEqual": {
+    "prefix": "ae",
+    "body": "Assert.areEqual(${1:expected}, ${2:actual}, '${3:message}');",
+    "description": "Assert.areEqual"
+  },
+  "Assert.areNotEqual": {
+    "prefix": "ane",
+    "body": "Assert.areNotEqual(${1:expected}, ${2:actual}, '${3:message}');",
+    "description": "Assert.areNotEqual"
+  },
+  "Assert.isTrue": {
+    "prefix": "assert",
+    "body": "Assert.isTrue(${1:condition}, '${2:message}');",
+    "description": "Assert.isTrue"
+  },
+  "For Loop": {
+    "prefix": "for",
+    "body": [
+      "for (Integer ${1:i} = 0; ${1:i} < ${2:count}; ${1:i}++) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Index for loop"
+  },
+  "For-Each Loop": {
+    "prefix": "fore",
+    "body": [
+      "for (${1:SObject} ${2:item} : ${3:collection}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "For-each loop"
+  },
+  "While Loop": {
+    "prefix": "while",
+    "body": [
+      "while (${1:condition}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "While loop"
+  },
+  "Do-While Loop": {
+    "prefix": "dowhile",
+    "body": [
+      "do {",
+      "\t${0}",
+      "} while (${1:condition});"
+    ],
+    "description": "Do-while loop"
+  },
+  "If Statement": {
+    "prefix": "if",
+    "body": [
+      "if (${1:condition}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "If statement"
+  },
+  "If-Else Statement": {
+    "prefix": "ifelse",
+    "body": [
+      "if (${1:condition}) {",
+      "\t${2}",
+      "} else {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "If-else statement"
+  },
+  "If Null Check": {
+    "prefix": "ifnull",
+    "body": [
+      "if (${1:value} == null) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Null check"
+  },
+  "If Not Null Check": {
+    "prefix": "ifnotnull",
+    "body": [
+      "if (${1:value} != null) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Not-null check"
+  },
+  "Ternary Expression": {
+    "prefix": "ternary",
+    "body": "${1:condition} ? ${2:trueValue} : ${3:falseValue}",
+    "description": "Ternary expression"
+  },
+  "Constructor": {
+    "prefix": "ctor",
+    "body": [
+      "public ${1:ClassName}(${2:params}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Constructor"
+  },
+  "Instance Method": {
+    "prefix": "method",
+    "body": [
+      "public ${1:void} ${2:methodName}(${3:params}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Instance method"
+  },
+  "Static Method": {
+    "prefix": "smethod",
+    "body": [
+      "public static ${1:void} ${2:methodName}(${3:params}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Static method"
+  },
+  "Private Field": {
+    "prefix": "field",
+    "body": "private ${1:String} ${2:fieldName};",
+    "description": "Private field declaration"
+  },
+  "Try-Catch": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "\t${1}",
+      "} catch (Exception ${2:e}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Try-catch block"
+  },
+  "Try-Catch-Finally": {
+    "prefix": "trycf",
+    "body": [
+      "try {",
+      "\t${1}",
+      "} catch (Exception ${2:e}) {",
+      "\t${3}",
+      "} finally {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Try-catch-finally block"
+  },
+  "Switch Statement": {
+    "prefix": "switch",
+    "body": [
+      "switch on ${1:value} {",
+      "\twhen ${2:case1} {",
+      "\t\t${3}",
+      "\t}",
+      "\twhen else {",
+      "\t\t${0}",
+      "\t}",
+      "}"
+    ],
+    "description": "Switch statement"
+  },
+  "Throw Exception": {
+    "prefix": "throw",
+    "body": "throw new ${1:Exception}('${2:message}');",
+    "description": "Throw exception"
+  },
+  "List Constructor": {
+    "prefix": "list",
+    "body": "List<${1:SObject}> ${2:items} = new List<${1:SObject}>();",
+    "description": "List constructor"
+  },
+  "Map Constructor": {
+    "prefix": "map",
+    "body": "Map<${1:Id}, ${2:SObject}> ${3:itemMap} = new Map<${1:Id}, ${2:SObject}>();",
+    "description": "Map constructor"
+  },
+  "Set Constructor": {
+    "prefix": "set",
+    "body": "Set<${1:Id}> ${2:ids} = new Set<${1:Id}>();",
+    "description": "Set constructor"
+  },
+  "AuraEnabled Method": {
+    "prefix": "aura",
+    "body": [
+      "@AuraEnabled${1|(cacheable=true),|}",
+      "public static ${2:Object} ${3:methodName}(${4:params}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "@AuraEnabled method"
+  },
+  "TestSetup Method": {
+    "prefix": "testsetup",
+    "body": [
+      "@TestSetup",
+      "static void setup() {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "@TestSetup method"
+  },
+  "Test Method": {
+    "prefix": "testmethod",
+    "body": [
+      "@IsTest",
+      "static void ${1:testMethodName}() {",
+      "\t// Arrange",
+      "\t${2}",
+      "",
+      "\t// Act",
+      "\t${3}",
+      "",
+      "\t// Assert",
+      "\t${0}",
+      "}"
+    ],
+    "description": "@IsTest test method"
+  },
+  "Custom Exception": {
+    "prefix": "customex",
+    "body": "public class ${1:CustomException} extends Exception {}",
+    "description": "Custom exception class (inline)"
+  },
+  "HttpCalloutMock": {
+    "prefix": "mockcallout",
+    "body": [
+      "@IsTest",
+      "public class ${1:MockCallout} implements HttpCalloutMock {",
+      "\tpublic HTTPResponse respond(HTTPRequest req) {",
+      "\t\tHTTPResponse res = new HTTPResponse();",
+      "\t\tres.setStatusCode(${2:200});",
+      "\t\tres.setBody('${3:}');",
+      "\t\treturn res;",
+      "\t}",
+      "}"
+    ],
+    "description": "HttpCalloutMock implementation"
+  },
+  "String.isBlank": {
+    "prefix": "isblank",
+    "body": "String.isBlank(${1:value})",
+    "description": "String.isBlank check"
+  },
+  "String.isNotBlank": {
+    "prefix": "isnotblank",
+    "body": "String.isNotBlank(${1:value})",
+    "description": "String.isNotBlank check"
+  },
+  "SOQL Query": {
+    "prefix": "soql",
+    "body": "[SELECT ${1:Id} FROM ${2:SObject} WHERE ${3:condition}]",
+    "description": "Inline SOQL query"
+  },
+  "Test Class Scaffold": {
+    "prefix": "testclass",
+    "body": [
+      "@IsTest",
+      "private class ${1:ClassNameTest} {",
+      "",
+      "\t@TestSetup",
+      "\tstatic void setup() {",
+      "\t\t${2}",
+      "\t}",
+      "",
+      "\t@IsTest",
+      "\tstatic void ${3:testMethodName}() {",
+      "\t\t// Arrange",
+      "\t\t${4}",
+      "",
+      "\t\t// Act",
+      "\t\tTest.startTest();",
+      "\t\t${5}",
+      "\t\tTest.stopTest();",
+      "",
+      "\t\t// Assert",
+      "\t\t${0}",
+      "\t}",
+      "}"
+    ],
+    "description": "Full @IsTest class scaffold with @TestSetup"
+  },
+  "Trigger Scaffold": {
+    "prefix": "trigger",
+    "body": [
+      "trigger ${1:TriggerName} on ${2:SObject} (before insert, before update, after insert, after update) {",
+      "\tif (Trigger.isBefore) {",
+      "\t\tif (Trigger.isInsert) {",
+      "\t\t\t${3:// before insert logic}",
+      "\t\t}",
+      "\t\tif (Trigger.isUpdate) {",
+      "\t\t\t${4:// before update logic}",
+      "\t\t}",
+      "\t}",
+      "\tif (Trigger.isAfter) {",
+      "\t\tif (Trigger.isInsert) {",
+      "\t\t\t${5:// after insert logic}",
+      "\t\t}",
+      "\t\tif (Trigger.isUpdate) {",
+      "\t\t\t${0:// after update logic}",
+      "\t\t}",
+      "\t}",
+      "}"
+    ],
+    "description": "Trigger with before/after handlers"
+  },
+  "Batch Apex Scaffold": {
+    "prefix": "batch",
+    "body": [
+      "public with sharing class ${1:BatchClassName} implements Database.Batchable<SObject> {",
+      "",
+      "\tpublic Database.QueryLocator start(Database.BatchableContext bc) {",
+      "\t\treturn Database.getQueryLocator([",
+      "\t\t\tSELECT Id FROM ${2:SObject}",
+      "\t\t\t${3:WHERE condition}",
+      "\t\t]);",
+      "\t}",
+      "",
+      "\tpublic void execute(Database.BatchableContext bc, List<${2:SObject}> scope) {",
+      "\t\t${0}",
+      "\t}",
+      "",
+      "\tpublic void finish(Database.BatchableContext bc) {",
+      "\t\t",
+      "\t}",
+      "}"
+    ],
+    "description": "Batch Apex scaffold"
+  },
+  "Queueable Scaffold": {
+    "prefix": "queueable",
+    "body": [
+      "public with sharing class ${1:QueueableClassName} implements Queueable${2|, Database.AllowsCallouts|} {",
+      "",
+      "\tpublic ${1:QueueableClassName}(${3:params}) {",
+      "\t\t${4}",
+      "\t}",
+      "",
+      "\tpublic void execute(QueueableContext ctx) {",
+      "\t\t${0}",
+      "\t}",
+      "}"
+    ],
+    "description": "Queueable Apex scaffold"
+  }
+}
