@@ -1,0 +1,23 @@
+-- LSP servers: { lspconfig_name = "mason-package-name" }
+return {
+	apex_ls = "apex-language-server",
+	bashls = "bash-language-server",
+	clangd = "clangd",
+	cssls = "css-lsp",
+	css_variables = "css-variables-language-server",
+	cssmodules_ls = "cssmodules-language-server",
+	html = "html-lsp",
+	jsonls = "json-lsp",
+	lua_ls = "lua-language-server",
+	lwc_ls = "lwc-language-server",
+	marksman = "marksman",
+	nginx_language_server = "nginx-language-server",
+	pyright = "pyright",
+	rust_analyzer = "rust-analyzer",
+	tombi = "tombi",
+	ts_ls = "typescript-language-server",
+	visualforce_ls = "visualforce-language-server",
+	vue_ls = "vue-language-server",
+	yamlls = "yaml-language-server",
+	zls = "zls",
+}

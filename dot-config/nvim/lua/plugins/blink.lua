@@ -1,10 +1,11 @@
 -- https://cmp.saghen.dev/configuration/general.html
 return {
 	"saghen/blink.cmp",
+	event = { "InsertEnter", "CmdlineEnter" },
+
 	-- optional: provides snippets for the snippet source
 	dependencies = {
 		"rafamadriz/friendly-snippets",
-		"nvim-mini/mini.nvim",
 		{
 			"xiaket/codeium.nvim",
 			dependencies = {
