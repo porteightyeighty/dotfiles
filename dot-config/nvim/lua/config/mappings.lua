@@ -78,45 +78,22 @@ end, { desc = "[D]ebug: Toggle [U]I" })
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 	callback = function(ev)
-		local opts = { buffer = ev.buf }
+		local function map(mode, lhs, rhs, desc)
+			vim.keymap.set(mode, lhs, rhs, { buffer = ev.buf, desc = desc })
+		end
 
 		-- Navigation
-		vim.keymap.set(
-			"n",
-			"gd",
-			vim.lsp.buf.definition,
-			vim.tbl_extend("force", opts, { desc = "[G]oto [D]efinition" })
-		)
-		vim.keymap.set(
-			"n",
-			"gr",
-			vim.lsp.buf.references,
-			vim.tbl_extend("force", opts, { desc = "[G]oto [R]eferences" })
-		)
-		vim.keymap.set(
-			"n",
-			"gI",
-			vim.lsp.buf.implementation,
-			vim.tbl_extend("force", opts, { desc = "[G]oto [I]mplementation" })
-		)
-		vim.keymap.set(
-			"n",
-			"gD",
-			vim.lsp.buf.declaration,
-			vim.tbl_extend("force", opts, { desc = "[G]oto [D]eclaration" })
-		)
+		map("n", "gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+		map("n", "gr", vim.lsp.buf.references, "[G]oto [R]eferences")
+		map("n", "gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+		map("n", "gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 		-- Documentation
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover Documentation" }))
-		vim.keymap.set(
-			"n",
-			"<C-K>",
-			vim.lsp.buf.signature_help,
-			vim.tbl_extend("force", opts, { desc = "Signature Help" })
-		)
+		map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
+		map("n", "<C-K>", vim.lsp.buf.signature_help, "Signature Help")
 
 		-- Refactoring
-		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "[R]e[n]ame" }))
+		map("n", "<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 		vim.keymap.set({ "n", "x" }, "<leader>re", function()
 			return require("refactoring").refactor("Extract Function")
 		end, { desc = "[R]efactor: [E]xtract", expr = true })
@@ -160,20 +137,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			require("tiny-code-action").code_action()
 		end, { noremap = true, silent = true })
 		-- Workspace
-		vim.keymap.set(
-			"n",
-			"<leader>cw",
-			vim.lsp.buf.workspace_symbol,
-			vim.tbl_extend("force", opts, { desc = "[C]ode [W]orkspace Symbols" })
-		)
+		map("n", "<leader>cw", vim.lsp.buf.workspace_symbol, "[C]ode [W]orkspace Symbols")
 
 		-- Inlay hints
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
-		if client and client.supports_method("textDocument/inlayHint") then
+		if client and client:supports_method("textDocument/inlayHint") then
 			vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
-			vim.keymap.set("n", "<leader>ch", function()
+			map("n", "<leader>ch", function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
-			end, vim.tbl_extend("force", opts, { desc = "[C]ode Inlay [H]ints Toggle" }))
+			end, "[C]ode Inlay [H]ints Toggle")
 		end
 	end,
 })
