@@ -36,7 +36,6 @@ vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "100"
 vim.opt.showmatch = true
 vim.opt.matchtime = 2 -- How long to show matching bracket
-vim.cmd.colorscheme("shine")
 
 -- vim.opt.cmdheight = 1                             -- Command line height
 vim.opt.completeopt = "menuone,noinsert,noselect" -- Completion options
@@ -136,17 +135,11 @@ vim.keymap.set("n", "<right>", function()
 	vim.notify("Use l to move!!")
 end)
 vim.keymap.set("n", "<up>", function()
-	vim.notify("Use h to move!!")
+	vim.notify("Use k to move!!")
 end)
 vim.keymap.set("n", "<down>", function()
-	vim.notify("use k to move!!")
+	vim.notify("Use j to move!!")
 end)
-
---  Use CTRL+<hjkl> to switch between windows
-vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Y to EOL
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to end of line" })

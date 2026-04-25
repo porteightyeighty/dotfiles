@@ -32,11 +32,10 @@ return {
       "zsh",
     })
 
-    -- Enable treesitter highlighting for parsers that don't ship with Neovim
+    -- nvim-treesitter main branch requires manual start per filetype
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = { "apex", "soql", "sosl", "sflog" },
-      callback = function()
-        vim.treesitter.start()
+      callback = function(args)
+        pcall(vim.treesitter.start, args.buf)
       end,
     })
   end,

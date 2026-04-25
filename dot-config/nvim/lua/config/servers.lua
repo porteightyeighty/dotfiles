@@ -15,7 +15,6 @@ return {
 	pyright = "pyright",
 	rust_analyzer = "rust-analyzer",
 	tombi = "tombi",
-	ts_ls = "typescript-language-server",
 	visualforce_ls = "visualforce-language-server",
 	vue_ls = "vue-language-server",
 	yamlls = "yaml-language-server",

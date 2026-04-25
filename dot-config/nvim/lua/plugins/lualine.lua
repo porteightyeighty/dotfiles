@@ -4,7 +4,7 @@ return {
 	lazy = false,
 	opts = {
 		options = {
-			theme = "dracula",
+			theme = "auto",
 		},
 		sections = {
 			lualine_x = {

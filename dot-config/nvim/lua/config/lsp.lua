@@ -17,7 +17,7 @@ vim.lsp.config("html", {
 	end,
 })
 
--- Apex LSP (installed via mason-tool-installer, not in shared server list)
+-- Apex LSP needs custom args (jar path, heap size) beyond the shared default
 vim.lsp.config("apex_ls", {
 	apex_jar_path = vim.fn.stdpath("data") .. "/mason/share/apex-language-server/apex-jorje-lsp.jar",
 	apex_enable_semantic_errors = true,
