@@ -31,9 +31,6 @@ vim.keymap.set("n", "<down>", function()
 	vim.notify("Use j to move!!")
 end)
 
--- Y to EOL
-vim.keymap.set("n", "Y", "y$", { desc = "Yank to end of line" })
-
 -- Center screen when jumping
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result (centered)" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
