@@ -1,20 +1,20 @@
----------------
--- Telescope --
----------------
-vim.keymap.set("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "[S]earch [H]elp" })
-vim.keymap.set("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "[S]earch [K]eymaps" })
-vim.keymap.set("n", "<leader>sf", "<cmd>Telescope find_files<cr>", { desc = "[S]earch [F]iles" })
-vim.keymap.set("n", "<leader>ss", "<cmd>Telescope builtin<cr>", { desc = "[S]earch [S]elect Telescope" })
-vim.keymap.set("n", "<leader>sw", "<cmd>Telescope grep_string<cr>", { desc = "[S]earch current [W]ord" })
-vim.keymap.set("n", "<leader>sg", "<cmd>Telescope live_grep<cr>", { desc = "[S]earch by [G]rep" })
-vim.keymap.set("n", "<leader>sd", "<cmd>Telescope diagnostics<cr>", { desc = "[S]earch [D]iagnostics" })
-vim.keymap.set("n", "<leader>sr", "<cmd>Telescope resume<cr>", { desc = "[S]earch [R]esume" })
-vim.keymap.set("n", "<leader>s.", "<cmd>Telescope oldfiles<cr>", { desc = '[S]earch Recent Files ("." for repeat)' })
+------------
+-- Picker --
+------------
+vim.keymap.set("n", "<leader>sh", function() Snacks.picker.help() end, { desc = "[S]earch [H]elp" })
+vim.keymap.set("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "[S]earch [K]eymaps" })
+vim.keymap.set("n", "<leader>sf", function() Snacks.picker.files() end, { desc = "[S]earch [F]iles" })
+vim.keymap.set("n", "<leader>ss", function() Snacks.picker.pickers() end, { desc = "[S]earch [S]elect Picker" })
+vim.keymap.set("n", "<leader>sw", function() Snacks.picker.grep_word() end, { desc = "[S]earch current [W]ord" })
+vim.keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "[S]earch by [G]rep" })
+vim.keymap.set("n", "<leader>sd", function() Snacks.picker.diagnostics() end, { desc = "[S]earch [D]iagnostics" })
+vim.keymap.set("n", "<leader>sr", function() Snacks.picker.resume() end, { desc = "[S]earch [R]esume" })
+vim.keymap.set("n", "<leader>s.", function() Snacks.picker.recent() end, { desc = '[S]earch Recent Files ("." for repeat)' })
 vim.keymap.set("n", "<leader>sn", function()
-	require("telescope.builtin").live_grep({ cwd = vim.fn.stdpath("config") })
+	Snacks.picker.grep({ cwd = vim.fn.stdpath("config") })
 end, { desc = "[S]earch [N]eovim Files" })
-vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope buffers<cr>", { desc = "[ ] Find existing buffers" })
-vim.keymap.set("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { desc = "[/] Fuzzy Find in Buffer" })
+vim.keymap.set("n", "<leader><leader>", function() Snacks.picker.buffers() end, { desc = "[ ] Find existing buffers" })
+vim.keymap.set("n", "<leader>/", function() Snacks.picker.lines() end, { desc = "[/] Fuzzy Find in Buffer" })
 
 ---------
 -- Oil --
@@ -133,9 +133,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end)
 
 		-- Code actions
-		vim.keymap.set({ "n", "x" }, "<leader>ca", function()
-			require("tiny-code-action").code_action()
-		end, { noremap = true, silent = true })
+		map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 		-- Workspace
 		map("n", "<leader>cw", vim.lsp.buf.workspace_symbol, "[C]ode [W]orkspace Symbols")
 
