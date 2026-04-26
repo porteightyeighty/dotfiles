@@ -4,6 +4,7 @@ return {
 	event = "VeryLazy",
 	config = function()
 		require("mini.ai").setup({})
+		require("mini.bracketed").setup({})
 		require("mini.diff").setup({})
 		local miniclue = require("mini.clue")
 		miniclue.setup({
@@ -59,6 +60,7 @@ return {
 		require("mini.icons").setup({})
 		require("mini.jump").setup({})
 		require("mini.jump2d").setup({})
+		require("mini.pairs").setup({})
 		local gen_loader = require("mini.snippets").gen_loader
 		require("mini.snippets").setup({
 			snippets = {
