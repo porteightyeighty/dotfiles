@@ -8,6 +8,7 @@ return {
 		config = function()
 			local mason_names = vim.tbl_values(require("config.servers"))
 			vim.list_extend(mason_names, {
+				"jdtls",
 				"java-debug-adapter",
 				"java-test",
 				"google-java-format",

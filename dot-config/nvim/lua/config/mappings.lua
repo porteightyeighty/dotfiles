@@ -9,7 +9,8 @@ vim.keymap.set("n", "<leader>sw", function() Snacks.picker.grep_word() end, { de
 vim.keymap.set("n", "<leader>sg", function() Snacks.picker.grep() end, { desc = "[S]earch by [G]rep" })
 vim.keymap.set("n", "<leader>sd", function() Snacks.picker.diagnostics() end, { desc = "[S]earch [D]iagnostics" })
 vim.keymap.set("n", "<leader>sr", function() Snacks.picker.resume() end, { desc = "[S]earch [R]esume" })
-vim.keymap.set("n", "<leader>s.", function() Snacks.picker.recent() end, { desc = '[S]earch Recent Files ("." for repeat)' })
+vim.keymap.set("n", "<leader>s.", function() Snacks.picker.recent() end,
+	{ desc = '[S]earch Recent Files ("." for repeat)' })
 vim.keymap.set("n", "<leader>sn", function()
 	Snacks.picker.grep({ cwd = vim.fn.stdpath("config") })
 end, { desc = "[S]earch [N]eovim Files" })
