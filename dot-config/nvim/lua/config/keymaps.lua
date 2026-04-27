@@ -43,8 +43,6 @@ vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" }
 vim.keymap.set("n", "<leader>bx", ":bdelete<CR>", { desc = "Close buffer" })
 
 -- Splitting & Resizing
-vim.keymap.set("n", "<leader>wv", ":vsplit<CR>", { desc = "Split [w]indow [v]ertically" })
-vim.keymap.set("n", "<leader>wh", ":split<CR>", { desc = "Split [w]indow [h]orizontally" })
 vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
 vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
