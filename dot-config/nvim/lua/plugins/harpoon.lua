@@ -39,7 +39,7 @@ return {
 		}
 		for i = 1, 5 do
 			table.insert(keys, {
-				"<leader>z" .. i,
+				"<leader>" .. i,
 				function()
 					require("harpoon"):list():select(i)
 				end,
