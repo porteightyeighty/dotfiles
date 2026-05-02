@@ -1,6 +1,18 @@
 right_format = "$time"
 command_timeout=5000
 
+[git_status]
+staged = '+${count}'
+modified = '!${count}'
+deleted = '✘${count}'
+renamed = '»${count}'
+untracked = '?${count}'
+conflicted = '=${count}'
+stashed = '\$${count}'
+ahead = '⇡${count}'
+behind = '⇣${count}'
+diverged = '⇡${ahead_count}⇣${behind_count}'
+
 [time]
 disabled = false
 style = "bold bright-black"
