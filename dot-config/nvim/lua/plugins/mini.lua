@@ -5,7 +5,6 @@ return {
 	config = function()
 		require("mini.ai").setup({})
 		require("mini.bracketed").setup({})
-		require("mini.diff").setup({})
 		local miniclue = require("mini.clue")
 		miniclue.setup({
 			triggers = {
