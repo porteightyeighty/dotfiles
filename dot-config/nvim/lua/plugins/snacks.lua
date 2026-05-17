@@ -74,7 +74,7 @@ return {
 			desc = "[S]earch [N]eovim Files",
 		},
 		{
-			"<leader>sb",
+			"<leader><leader>",
 			function()
 				Snacks.picker.buffers()
 			end,
@@ -111,7 +111,12 @@ return {
 		indent = { enabled = true },
 		input = { enabled = true },
 		notifier = { enabled = true },
-		picker = { enabled = true },
+		picker = {
+			enabled = true,
+			sources = {
+				explorer = { auto_close = true, git_status_open = true, jump = { close = true } },
+			},
+		},
 		quickfile = { enabled = true },
 		scope = { enabled = true },
 		scroll = { enabled = true },
