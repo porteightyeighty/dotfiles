@@ -52,6 +52,8 @@ return {
 				{ mode = "n", keys = "<Leader>w", desc = "+Window" },
 				{ mode = "n", keys = "<Leader>S", desc = "+Salesforce" },
 				{ mode = "n", keys = "<Leader>Sn", desc = "+New" },
+				{ mode = "n", keys = "<Leader>b", desc = "+Buffer" },
+				{ mode = "n", keys = "<Leader>x", desc = "+Trouble" },
 
 				-- Surround (mini.surround on gs prefix)
 				{ mode = "n", keys = "gs", desc = "+Surround" },
