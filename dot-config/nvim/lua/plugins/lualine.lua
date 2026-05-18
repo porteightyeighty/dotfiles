@@ -30,27 +30,12 @@ return {
 			lualine_z = { "location" },
 		},
 		inactive_sections = {
+			lualine_a = {},
+			lualine_b = {},
 			lualine_c = {},
-			lualine_x = {
-				{
-					function()
-						local sf_ok, sf = pcall(require, "sf")
-						if sf_ok and sf.get_target_org then
-							local org = sf.get_target_org()
-							if org and org ~= "" then
-								return "SF: " .. org
-							end
-						end
-						return ""
-					end,
-					cond = function()
-						return vim.fn.findfile("sfdx-project.json", ".;") ~= ""
-					end,
-				},
-				"filetype",
-			},
-			lualine_y = { "progress" },
-			lualine_z = { "location" },
+			lualine_x = {},
+			lualine_y = {},
+			lualine_z = {},
 		},
 	},
 }
