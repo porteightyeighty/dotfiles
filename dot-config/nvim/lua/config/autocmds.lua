@@ -4,14 +4,6 @@
 
 local augroup = vim.api.nvim_create_augroup("UserConfig", {})
 
--- Highlight yanked text
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = augroup,
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
-
 -- Restore Lazy's `s` (Sync) inside the Lazy UI, which flash.nvim's global `s`
 -- otherwise shadows. Schedule to run after Lazy installs its own buffer maps.
 vim.api.nvim_create_autocmd("FileType", {
