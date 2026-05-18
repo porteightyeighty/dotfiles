@@ -56,10 +56,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 		map("n", "<leader>cw", vim.lsp.buf.workspace_symbol, "[C]ode [W]orkspace Symbols")
 
-		-- Inlay hints
+		-- Inlay hints (off by default; toggle with <leader>ch)
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)
 		if client and client:supports_method("textDocument/inlayHint") then
-			vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
 			map("n", "<leader>ch", function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
 			end, "[C]ode Inlay [H]ints Toggle")

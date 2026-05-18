@@ -52,13 +52,10 @@ return {
 				{ mode = "n", keys = "<Leader>w", desc = "+Window" },
 				{ mode = "n", keys = "<Leader>S", desc = "+Salesforce" },
 				{ mode = "n", keys = "<Leader>Sn", desc = "+New" },
-				{ mode = "n", keys = "<Leader>z", desc = "+Harpoon" },
 			},
 		})
 		-- require('mini.cmdline').setup({})
 		require("mini.icons").setup({})
-		require("mini.jump").setup({})
-		require("mini.jump2d").setup({})
 		require("mini.pairs").setup({})
 		local gen_loader = require("mini.snippets").gen_loader
 		require("mini.snippets").setup({
