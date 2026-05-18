@@ -11,6 +11,13 @@ return {
 			desc = "[S]earch [H]elp",
 		},
 		{
+			"<leader>sc",
+			function()
+				Snacks.picker.colorschemes()
+			end,
+			desc = "[S]earch [C]olorscheme (live preview)",
+		},
+		{
 			"<leader>sk",
 			function()
 				Snacks.picker.keymaps()
