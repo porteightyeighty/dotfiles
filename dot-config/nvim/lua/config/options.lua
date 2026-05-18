@@ -81,10 +81,7 @@ vim.opt.inccommand = "split"
 -- See `:help 'confirm'`
 vim.opt.confirm = true
 
--- Fold Options
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldlevel = 99
+-- Fold options are managed by nvim-ufo (foldlevel/foldcolumn/foldmethod)
 
 -- Filetype detection
 vim.filetype.add({
