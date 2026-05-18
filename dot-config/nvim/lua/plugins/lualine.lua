@@ -30,7 +30,7 @@ return {
 			lualine_z = { "location" },
 		},
 		inactive_sections = {
-			lualine_c = { "filename" },
+			lualine_c = {},
 			lualine_x = {
 				{
 					function()
