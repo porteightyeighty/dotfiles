@@ -54,6 +54,8 @@ return {
 				{ mode = "n", keys = "<Leader>Sn", desc = "+New" },
 				{ mode = "n", keys = "<Leader>b", desc = "+Buffer" },
 				{ mode = "n", keys = "<Leader>x", desc = "+Trouble" },
+				{ mode = "n", keys = "<Leader>cd", desc = "+Debug print" },
+				{ mode = "x", keys = "<Leader>cd", desc = "+Debug print" },
 
 				-- Surround (mini.surround on gs prefix)
 				{ mode = "n", keys = "gs", desc = "+Surround" },
