@@ -52,6 +52,10 @@ return {
 				{ mode = "n", keys = "<Leader>w", desc = "+Window" },
 				{ mode = "n", keys = "<Leader>S", desc = "+Salesforce" },
 				{ mode = "n", keys = "<Leader>Sn", desc = "+New" },
+
+				-- Surround (mini.surround on gs prefix)
+				{ mode = "n", keys = "gs", desc = "+Surround" },
+				{ mode = "x", keys = "gs", desc = "+Surround" },
 			},
 		})
 		-- require('mini.cmdline').setup({})
@@ -66,6 +70,16 @@ return {
 				gen_loader.from_lang(),
 			},
 		})
-		require("mini.surround").setup({})
+		require("mini.surround").setup({
+			mappings = {
+				add = "gsa",
+				delete = "gsd",
+				find = "gsf",
+				find_left = "gsF",
+				highlight = "gsh",
+				replace = "gsr",
+				update_n_lines = "gsn",
+			},
+		})
 	end,
 }

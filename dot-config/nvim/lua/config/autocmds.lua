@@ -12,6 +12,18 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- Restore Lazy's `s` (Sync) inside the Lazy UI, which flash.nvim's global `s`
+-- otherwise shadows. Schedule to run after Lazy installs its own buffer maps.
+vim.api.nvim_create_autocmd("FileType", {
+	group = augroup,
+	pattern = "lazy",
+	callback = function(ev)
+		vim.schedule(function()
+			vim.keymap.set("n", "s", "<cmd>Lazy sync<cr>", { buffer = ev.buf, desc = "Lazy sync" })
+		end)
+	end,
+})
+
 -- Return to last edit position when opening files
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = augroup,
