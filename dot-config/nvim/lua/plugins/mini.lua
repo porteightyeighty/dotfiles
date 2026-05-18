@@ -65,6 +65,7 @@ return {
 		})
 		-- require('mini.cmdline').setup({})
 		require("mini.icons").setup({})
+		require("mini.move").setup({})
 		require("mini.pairs").setup({})
 		local gen_loader = require("mini.snippets").gen_loader
 		require("mini.snippets").setup({
