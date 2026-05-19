@@ -20,6 +20,7 @@
   "mason-tool-installer.nvim": { "branch": "main", "commit": "443f1ef8b5e6bf47045cb2217b6f748a223cf7dc" },
   "mason.nvim": { "branch": "main", "commit": "cbf8d285e1462dd24acf3507817be2bbcb035919" },
   "maven.nvim": { "branch": "main", "commit": "3c013c55a381d821c5031dcd279d2e4205011380" },
+  "mermaid.nvim": { "branch": "main", "commit": "a86a74e1366320703dd66bcba924c13f648fd3eb" },
   "mini.nvim": { "branch": "main", "commit": "6a8aab4b07c6caa1d0643c1c9dccd5b2d5f5e094" },
   "nightfox.nvim": { "branch": "main", "commit": "26b61b1f856ec37cae3cb64f5690adb955f246a1" },
   "nvim-dap": { "branch": "master", "commit": "45a69eba683a2c448dd9ecfc4de89511f0646b5f" },
