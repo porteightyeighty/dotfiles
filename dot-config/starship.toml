@@ -49,9 +49,9 @@ error_symbol = "[➤](bold red)"
 # disabled = true
 
 [custom.sf]
-description = "Salesforce extension"
-when = """case $PWD in /usr/*|/tmp/*|/var/*) exit 1;; esac; d=$PWD; i=0; while [ "$d" != "/" ] && [ $i -lt 15 ]; do [ -f "$d/sfdx-project.json" ] && exit 0; d=$(dirname "$d"); i=$((i+1)); done; exit 1"""
-style = "bold bright-blue"
+description = "Salesforce target org"
+detect_files = ["sfdx-project.json"]
 symbol = "☁ "
-command = """d=$PWD; i=0; while [ "$d" != "/" ] && [ $i -lt 15 ]; do [ -f "$d/sfdx-project.json" ] && break; d=$(dirname "$d"); i=$((i+1)); done; jq -r '.["target-org"] // empty' "$d/.sf/config.json" 2>/dev/null || jq -r '.defaultusername // empty' "$d/.sfdx/sfdx-config.json" 2>/dev/null"""
+style = "bold bright-blue"
+command = "starship-sf-org"
 format = "using [$symbol$output ](bright-blue)"

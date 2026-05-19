@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+# Print the current Salesforce target org, walking up from $PWD to find sfdx-project.json.
+# Used by the starship [custom.sf] module.
+
+d=$PWD
+while [ "$d" != "/" ]; do
+	if [ -f "$d/sfdx-project.json" ]; then
+		jq -r '.["target-org"] // empty' "$d/.sf/config.json" 2>/dev/null \
+			|| jq -r '.defaultusername // empty' "$d/.sfdx/sfdx-config.json" 2>/dev/null
+		exit 0
+	fi
+	d=$(dirname "$d")
+done
