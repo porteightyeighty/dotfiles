@@ -129,5 +129,97 @@ return {
 		scroll = { enabled = true },
 		statuscolumn = { enabled = true },
 		words = { enabled = true },
+		dashboard = {
+			enabled = true,
+			width = 70,
+			sections = {
+				{ section = "header" },
+				{ section = "keys", gap = 1, padding = 1 },
+				{
+					pane = 2,
+					icon = " ",
+					title = "Recent Files",
+					section = "recent_files",
+					indent = 2,
+					padding = 1,
+				},
+				{
+					pane = 2,
+					icon = " ",
+					title = "Projects",
+					section = "projects",
+					indent = 2,
+					padding = 1,
+				},
+				{
+					pane = 2,
+					icon = " ",
+					title = "Git Status",
+					section = "terminal",
+					enabled = function()
+						return Snacks.git.get_root() ~= nil
+					end,
+					cmd = "git status --short --branch --renames",
+					height = 5,
+					padding = 1,
+					ttl = 5 * 60,
+					indent = 3,
+				},
+				{ section = "startup" },
+			},
+			preset = {
+				header = [[
+  ███╗   ██╗██╗   ██╗██╗███╗   ███╗
+  ████╗  ██║██║   ██║██║████╗ ████║
+  ██╔██╗ ██║██║   ██║██║██╔████╔██║
+  ██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║
+  ██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║
+  ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+				keys = {
+					{
+						icon = " ",
+						key = "s",
+						desc = "Restore Session",
+						action = ":lua require('persistence').load()",
+					},
+					{
+						icon = " ",
+						key = "p",
+						desc = "Projects",
+						action = ":lua Snacks.picker.projects()",
+					},
+					{
+						icon = " ",
+						key = "r",
+						desc = "Recent Files",
+						action = ":lua Snacks.picker.recent()",
+					},
+					{
+						icon = " ",
+						key = "f",
+						desc = "Find File",
+						action = ":lua Snacks.picker.files()",
+					},
+					{
+						icon = " ",
+						key = "n",
+						desc = "New File",
+						action = ":ene | startinsert",
+					},
+					{
+						icon = "󰒲 ",
+						key = "l",
+						desc = "Lazy",
+						action = ":Lazy",
+					},
+					{
+						icon = " ",
+						key = "q",
+						desc = "Quit",
+						action = ":qa",
+					},
+				},
+			},
+		},
 	},
 }
