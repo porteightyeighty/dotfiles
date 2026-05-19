@@ -1,6 +1,5 @@
 return {
 	"b0o/incline.nvim",
-	dependencies = { "echasnovski/mini.nvim" },
 	event = "VeryLazy",
 	config = function()
 		require("incline").setup({
