@@ -57,3 +57,9 @@ vim.cmd("command! Wq wq")
 vim.cmd("command! WQ wq")
 vim.cmd("command! W w")
 vim.cmd("command! Q quit")
+
+-- Disable the command-line window (q: / q/ / q?) — almost always a typo.
+-- Still reachable via <C-f> from within command-line or search mode.
+vim.keymap.set("n", "q:", "<Nop>")
+vim.keymap.set("n", "q/", "<Nop>")
+vim.keymap.set("n", "q?", "<Nop>")
