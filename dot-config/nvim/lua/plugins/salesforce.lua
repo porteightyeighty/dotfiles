@@ -19,6 +19,7 @@ return {
 		{ "<leader>Sl", "<cmd>SF md list<CR>", desc = "List metadata" },
 		{ "<leader>Sm", "<cmd>SF md pull<CR>", desc = "Pull metadata" },
 		{ "<leader>So", "<cmd>SF org open<CR>", desc = "Open org in browser" },
+		{ "<leader>Sg", "<cmd>SF sobject refresh <CR>", desc = "Refresh all sObjects" },
 		-- { "<leader>S<Space>", "<cmd>SF term toggle<CR>", desc = "Toggle SF terminal" },
 	},
 }

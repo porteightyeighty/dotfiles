@@ -87,8 +87,10 @@ vim.opt.confirm = true
 vim.filetype.add({
 	extension = {
 		cls = function(path)
-			-- Only treat .cls as Apex if inside a Salesforce project
-			if vim.fn.findfile("sfdx-project.json", vim.fn.fnamemodify(path, ":h") .. ";") ~= "" then
+			-- Only treat .cls as Apex if inside a Salesforce project.
+			-- Use vim.fs.find (not findfile + ";") so project paths containing
+			-- spaces resolve correctly — findfile parses spaces as 'path' separators.
+			if vim.fs.find("sfdx-project.json", { path = vim.fn.fnamemodify(path, ":h"), upward = true })[1] then
 				return "apex"
 			end
 			-- Fall through to default (LaTeX \documentclass)
