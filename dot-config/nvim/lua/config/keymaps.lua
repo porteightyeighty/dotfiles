@@ -41,6 +41,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>bo", ":let curr = bufnr('%') | %bd | exec 'b' curr<CR>", { desc = "Close all other buffers" })
 
 -- Splitting & Resizing
 vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
