@@ -24,6 +24,7 @@ return {
 					init_options = { bundles = bundles },
 					settings = {
 						java = {
+							signatureHelp = { enabled = true, description = { enabled = true } },
 							configuration = {
 								runtimes = {},
 							},
