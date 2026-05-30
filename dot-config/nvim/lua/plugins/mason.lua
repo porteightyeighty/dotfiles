@@ -12,6 +12,7 @@ return {
 				"java-debug-adapter",
 				"java-test",
 				"google-java-format",
+				"checkstyle",
 			})
 			require("mason-tool-installer").setup({
 				ensure_installed = mason_names,
