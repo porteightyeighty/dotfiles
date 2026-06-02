@@ -121,7 +121,7 @@ return {
 		picker = {
 			enabled = true,
 			sources = {
-				explorer = { auto_close = true, git_status_open = true, jump = { close = true } },
+				explorer = { auto_close = false, git_status_open = true, jump = { close = true } },
 			},
 		},
 		quickfile = { enabled = true },
