@@ -70,6 +70,9 @@ export VISUAL=nvim
 alias ls='ls --color'
 alias l='ls -lAh --color'
 
+# Rebuild/activate the home-manager config (impure: username is read from $USER)
+alias hms='home-manager switch --flake ~/dotfiles#default --impure'
+
 
 # Functions
 
@@ -83,12 +86,16 @@ function y() {
 }
 
 
+# Nix (home-manager) profile takes precedence over system & Homebrew tools.
+# macOS path_helper pushes ~/.nix-profile/bin to the back of PATH; re-prepend it
+# here so nix-provided binaries win for interactive shells.
+export PATH="$HOME/.nix-profile/bin:$HOME/.local/bin:$PATH"
+
 #Shell integrations
 
 eval "$(fzf --zsh)"
 
 eval "$(starship init zsh)"
-export PATH="$HOME/.local/bin:$PATH"
 
 ### Added by Zinit's installer
 # Load a few important annexes, without Turbo
@@ -107,4 +114,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 eval "$(zoxide init --cmd cd zsh)"
 
-SF_AC_ZSH_SETUP_PATH=/Users/matthewport/Library/Caches/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
+SF_AC_ZSH_SETUP_PATH="$HOME/Library/Caches/sf/autocomplete/zsh_setup" && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
