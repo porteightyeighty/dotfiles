@@ -1,9 +1,9 @@
 return {
 	{ "mason-org/mason.nvim", cmd = "Mason", opts = {} },
-	{ "neovim/nvim-lspconfig", event = "VeryLazy" },
+	{ "neovim/nvim-lspconfig", event = { "BufReadPre", "BufNewFile" } },
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		event = "VeryLazy",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "mason-org/mason.nvim" },
 		config = function()
 			local mason_names = vim.tbl_values(require("config.servers"))
