@@ -45,6 +45,18 @@ nix run home-manager/master -- switch --flake ~/dotfiles#default --impure -b bac
 Open a fresh shell and confirm tools resolve into the nix profile, e.g.
 `command -v rg` → `~/.nix-profile/bin/rg`.
 
+## Tools outside nix
+
+Runtimes and self-updating CLIs aren't nix packages. After the switch above:
+
+- **nvm** — auto-installed by the `zsh-nvm` zinit plugin on first shell start; then `nvm install --lts`.
+- **sdkman** (Java/Maven only) — `curl -s "https://get.sdkman.io" | bash`.
+- **Salesforce CLI (`sf`)** — official macOS installer ([docs](https://developer.salesforce.com/tools/salesforcecli)):
+  ```bash
+  curl -fsSL https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-arm64.pkg -o /tmp/sf.pkg
+  sudo installer -pkg /tmp/sf.pkg -target /
+  ```
+
 ## Day-to-day
 
 After editing `flake.nix` / `home.nix`, re-activate with the alias:
