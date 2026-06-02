@@ -49,7 +49,19 @@ alias ls='ls --color'
 alias l='ls -lAh --color'
 
 
-#Shell integrations 
+# Functions
+
+# Open yazi with `y`; cd into the directory yazi was in on quit.
+function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    command yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd < "$tmp"
+    [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+    command rm -f -- "$tmp"
+}
+
+
+#Shell integrations
 
 eval "$(fzf --zsh)"
 
