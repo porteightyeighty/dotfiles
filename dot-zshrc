@@ -13,13 +13,28 @@ source "${ZINIT_HOME}/zinit.zsh"
 # plugins
 
 zinit light lukechilds/zsh-nvm
-zinit light zsh-users/zsh-syntax-highlighting
+
+# zsh-completions must be sourced before compinit so its definitions land on $fpath
 zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
+
+# Initialize the completion system. This is what powers `tmux <Tab>` -> kill-session, ls, ...
+autoload -Uz compinit && compinit
+
+# fzf-tab must load AFTER compinit and BEFORE widget-wrapping plugins
+# (zsh-autosuggestions / zsh-syntax-highlighting), otherwise the menu can misbehave.
 zinit light Aloxaf/fzf-tab
 
-#Load completions for zsh-completions 
-autoload -U compinit && compinit
+zinit light zsh-users/zsh-autosuggestions
+
+zinit ice depth=2
+zinit light jeffreytse/zsh-vi-mode
+
+# zsh-syntax-highlighting MUST be the last plugin sourced.
+zinit light zsh-users/zsh-syntax-highlighting
+
+# Let inline autosuggestions fall back to the completion engine, so subcommands
+# (e.g. `tmux kill-session`) are suggested even when they're not yet in history.
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 #Completion styling 
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -30,6 +45,8 @@ HISTSIZE=10000000
 SAVEHIST=$HISTSIZE
 HISTORY_IGNORE="(ls|cd|pwd|exit|cd)*"
 
+#Vim Keybindings
+bindkey -v 
 
 setopt EXTENDED_HISTORY      # Write the history file in the ':start:elapsed;command' format.
 setopt INC_APPEND_HISTORY    # Write to the history file immediately, not when the shell exits.
@@ -43,7 +60,12 @@ setopt APPEND_HISTORY        # append to history file (Default)
 setopt HIST_NO_STORE         # Don't store history commands
 setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line being added to the history.
 
-# Aliases 
+# Environment
+
+export EDITOR=nvim
+export VISUAL=nvim
+
+# Aliases
 
 alias ls='ls --color'
 alias l='ls -lAh --color'
@@ -84,3 +106,5 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 eval "$(zoxide init --cmd cd zsh)"
+
+SF_AC_ZSH_SETUP_PATH=/Users/matthewport/Library/Caches/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
