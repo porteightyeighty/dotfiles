@@ -1,6 +1,6 @@
 # porteightyeighty Dotfiles
 
-A reproducible macOS environment driven by a **Nix flake + [home-manager](https://github.com/nix-community/home-manager)**.
+A reproducible dev environment (macOS or Linux) driven by a **Nix flake + [home-manager](https://github.com/nix-community/home-manager)**.
 
 It's a **hybrid** setup:
 
@@ -11,11 +11,12 @@ It's a **hybrid** setup:
 - CLI tools come from nix (`home.packages`); language runtimes stay on their own
   managers (`nvm`, `rbenv`, `sdkman`); GUI apps stay on Homebrew casks.
 
-The config is **portable across accounts**: the running user is read from `$USER`
-at build time, so the same flake works for any login on any machine without
-enumerating usernames. (This is why switches use `--impure`.) Git identity is kept
-out of the repo — each account provides its own untracked
-`~/.config/git/config.local`.
+The config is **portable across accounts and platforms**: the user, home directory,
+and system are all read from the environment at build time (`$USER`, `$HOME`,
+`builtins.currentSystem`), so the same flake works for any login on macOS or Linux
+without enumerating usernames or architectures. (This is why switches use
+`--impure`.) Git identity is kept out of the repo — each account provides its own
+untracked `~/.config/git/config.local`.
 
 ## Prerequisites
 
@@ -51,11 +52,12 @@ Runtimes and self-updating CLIs aren't nix packages. After the switch above:
 
 - **nvm** — auto-installed by the `zsh-nvm` zinit plugin on first shell start; then `nvm install --lts`.
 - **sdkman** (Java/Maven only) — `curl -s "https://get.sdkman.io" | bash`.
-- **Salesforce CLI (`sf`)** — official macOS installer ([docs](https://developer.salesforce.com/tools/salesforcecli)):
+- **Salesforce CLI (`sf`)** — install per the [official docs](https://developer.salesforce.com/tools/salesforcecli). On macOS:
   ```bash
   curl -fsSL https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-arm64.pkg -o /tmp/sf.pkg
   sudo installer -pkg /tmp/sf.pkg -target /
   ```
+  On Linux use the tarball / `npm i -g @salesforce/cli` route from the same docs.
 
 ## Day-to-day
 
@@ -72,9 +74,9 @@ no `hms` needed.
 
 - **Migrating from a stow-managed setup?** Remove the old symlinks first
   (`stow -D -t ~ .`) so home-manager can take over, then run the first switch above.
-- **Homebrew** is still used for GUI casks (`ghostty`, `raycast`, `hiddenbar`) and
-  runtime/service formulae you choose to keep. CLI formulae that nix now provides
-  can be uninstalled by whichever account owns Homebrew.
+- **GUI apps / casks** are *not* managed here (macOS: Homebrew casks like `ghostty`,
+  `raycast`, `hiddenbar`; Linux: your distro's package manager). CLI formulae that
+  nix now provides can be uninstalled by whichever account owns Homebrew.
 - **Neovim LSPs/formatters** are managed by Mason inside nvim, not nix.
 - `--impure` is required on every switch because the username is read from the
   environment.

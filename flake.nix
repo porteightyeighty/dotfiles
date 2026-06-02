@@ -11,16 +11,17 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     let
-      system = "aarch64-darwin";
+      # Everything is read from the environment so a single config serves any
+      # platform / account without enumeration. This is why switches need
+      # `--impure` (currentSystem + getEnv are only populated in impure eval).
+      system = builtins.currentSystem;        # aarch64-darwin, x86_64-linux, ...
+      username = builtins.getEnv "USER";
+      homeDirectory = builtins.getEnv "HOME";  # /Users/... on macOS, /home/... on Linux
+
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
       };
-
-      # Read the running account from the environment so a single config serves
-      # any user/home without enumerating names. This is why switches need
-      # `--impure` (getEnv is only populated in impure eval).
-      username = builtins.getEnv "USER";
 
       config = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
@@ -28,7 +29,7 @@
           ./home.nix
           {
             home.username = username;
-            home.homeDirectory = "/Users/${username}";
+            home.homeDirectory = homeDirectory;
           }
         ];
       };
