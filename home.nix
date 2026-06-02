@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
 let
   # The dotfiles working tree. Configs are symlinked back here (out-of-store) so
@@ -61,8 +61,38 @@ in
     plugins = with pkgs.tmuxPlugins; [ sensible vim-tmux-navigator ];
   };
 
+  # Native module: zsh. home-manager installs zsh from nixpkgs and generates
+  # ~/.zshrc; we keep the live-edit workflow by having that generated file
+  # `source` the working-tree dot-zshrc (read at shell startup, so edits take
+  # effect immediately without a rebuild).
+  programs.zsh = {
+    enable = true;
+    initContent = "source ${dotfiles}/dot-zshrc";
+  };
+
+  # Make the nix-installed zsh the login shell. Standalone home-manager can't
+  # manage /etc/passwd declaratively, so this activation script does it at
+  # switch time: allowlist the binary in /etc/shells (needs sudo) then chsh.
+  # Fully idempotent — a no-op once the login shell already matches.
+  home.activation.setDefaultShell =
+    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      ZSH="${config.programs.zsh.package}/bin/zsh"
+      if [ "$(uname)" = "Darwin" ]; then
+        CURRENT="$(dscl . -read "/Users/$USER" UserShell 2>/dev/null | awk '{print $2}')"
+      else
+        CURRENT="$(getent passwd "$USER" 2>/dev/null | cut -d: -f7)"
+      fi
+      if [ "$CURRENT" != "$ZSH" ]; then
+        if ! grep -qxF "$ZSH" /etc/shells; then
+          echo "Adding $ZSH to /etc/shells (sudo)…"
+          echo "$ZSH" | sudo tee -a /etc/shells >/dev/null
+        fi
+        echo "Setting login shell to $ZSH (chsh)…"
+        chsh -s "$ZSH" || echo "chsh failed — run: chsh -s $ZSH"
+      fi
+    '';
+
   # Symlinked configs -> point at the working tree (live edits, no rebuild)
-  home.file.".zshrc".source = link "dot-zshrc";
   home.file.".wezterm.lua".source = link "dot-wezterm.lua";
   home.file.".local/bin/starship-sf-org".source = link "dot-local/bin/starship-sf-org";
   home.file.".gitignore_global".source = link "dot-gitignore_global";
