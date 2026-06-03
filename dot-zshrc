@@ -71,7 +71,7 @@ alias ls='ls --color'
 alias l='ls -lAh --color'
 
 # Rebuild/activate the home-manager config (impure: username is read from $USER)
-alias hms='home-manager switch --flake ~/dotfiles#default --impure'
+alias hms='home-manager switch -b backup --flake ~/dotfiles#default --impure'
 
 
 # Functions
