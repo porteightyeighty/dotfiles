@@ -25,6 +25,15 @@ vim.lsp.config("apex_ls", {
 	filetypes = { "apex", "apexcode", "trigger" },
 })
 
+-- Run clippy instead of plain `cargo check` on save for richer lints
+vim.lsp.config("rust_analyzer", {
+	settings = {
+		["rust-analyzer"] = {
+			check = { command = "clippy" },
+		},
+	},
+})
+
 local lsp_names = vim.tbl_keys(servers)
 vim.lsp.enable(lsp_names)
 

@@ -24,6 +24,8 @@ in
     tree
     tldr
     wget
+    openssl 
+    curl
 
     # Git / dev
     lazygit
@@ -31,6 +33,14 @@ in
     universal-ctags
     neovim
     tree-sitter
+    python3
+
+    # Rust toolchain (stable, from nixpkgs). rust-analyzer is installed via
+    # Mason; RUST_SRC_PATH below points it at the std library source.
+    rustc
+    cargo
+    clippy
+    rustfmt
 
     # Apex lint
     pmd
@@ -45,6 +55,10 @@ in
     # Fonts
     nerd-fonts.monaspace
   ];
+
+  # rust-analyzer (installed via Mason) needs the std library source to provide
+  # completion/hover for std. nixpkgs ships it as a separate path.
+  home.sessionVariables.RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
 
   # Native module: git. Identity is deliberately kept OUT of the repo: each
   # account supplies its own untracked ~/.config/git/config.local with a [user]
