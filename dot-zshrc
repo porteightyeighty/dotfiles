@@ -86,6 +86,34 @@ function y() {
 }
 
 
+# Auto (de)activate a Python venv based on the current directory.
+# Walks up from $PWD looking for a `.venv`; activates it on entry and
+# deactivates when you leave the project tree (or move to one without a venv).
+function _auto_venv() {
+    local dir="$PWD" found=""
+    while [[ "$dir" != "/" && -n "$dir" ]]; do
+        if [[ -f "$dir/.venv/bin/activate" ]]; then
+            found="$dir/.venv"
+            break
+        fi
+        dir="${dir:h}"
+    done
+
+    if [[ -n "$found" ]]; then
+        # Activate (or switch) if it isn't the currently active venv.
+        if [[ "$VIRTUAL_ENV" != "$found" ]]; then
+            [[ -n "$VIRTUAL_ENV" ]] && deactivate >/dev/null 2>&1
+            source "$found/bin/activate"
+        fi
+    elif [[ -n "$VIRTUAL_ENV" ]]; then
+        # Left the project tree: deactivate.
+        deactivate >/dev/null 2>&1
+    fi
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd _auto_venv
+_auto_venv  # run once for the directory the shell starts in
+
 # Nix (home-manager) profile takes precedence over system & Homebrew tools.
 # macOS path_helper pushes ~/.nix-profile/bin to the back of PATH; re-prepend it
 # here so nix-provided binaries win for interactive shells.
