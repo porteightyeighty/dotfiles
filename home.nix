@@ -30,6 +30,7 @@ in
     gh
     universal-ctags
     neovim
+    tree-sitter
 
     # Apex lint
     pmd
@@ -77,18 +78,26 @@ in
   home.activation.setDefaultShell =
     lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       ZSH="${config.programs.zsh.package}/bin/zsh"
+      # Home Manager's activation PATH holds only nix store paths (coreutils etc.),
+      # not /usr/bin — so reference system tools by absolute path and parse dscl's
+      # output with the shell instead of awk.
       if [ "$(uname)" = "Darwin" ]; then
-        CURRENT="$(dscl . -read "/Users/$USER" UserShell 2>/dev/null | awk '{print $2}')"
+        CURRENT="$(/usr/bin/dscl . -read "/Users/$USER" UserShell 2>/dev/null)"
+        CURRENT="''${CURRENT#UserShell: }"
+        chsh=/usr/bin/chsh
+        sudo=/usr/bin/sudo
       else
         CURRENT="$(getent passwd "$USER" 2>/dev/null | cut -d: -f7)"
+        chsh=chsh
+        sudo=sudo
       fi
       if [ "$CURRENT" != "$ZSH" ]; then
-        if ! grep -qxF "$ZSH" /etc/shells; then
+        if ! ${pkgs.gnugrep}/bin/grep -qxF "$ZSH" /etc/shells; then
           echo "Adding $ZSH to /etc/shells (sudo)…"
-          echo "$ZSH" | sudo tee -a /etc/shells >/dev/null
+          echo "$ZSH" | "$sudo" tee -a /etc/shells >/dev/null
         fi
         echo "Setting login shell to $ZSH (chsh)…"
-        chsh -s "$ZSH" || echo "chsh failed — run: chsh -s $ZSH"
+        "$chsh" -s "$ZSH" || echo "chsh failed — run: $chsh -s $ZSH"
       fi
     '';
 
