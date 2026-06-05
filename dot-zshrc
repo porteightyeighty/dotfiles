@@ -105,6 +105,11 @@ function _auto_venv() {
             [[ -n "$VIRTUAL_ENV" ]] && deactivate >/dev/null 2>&1
             source "$found/bin/activate"
         fi
+        # Always re-assert the venv's bin at the front of PATH. When the venv is
+        # inherited from a parent shell (VIRTUAL_ENV already set), the branch
+        # above is skipped, so the ~/.nix-profile/bin prepend would otherwise
+        # shadow the venv's python. Strip any existing entry, then re-prepend.
+        path=("$found/bin" ${path:#$found/bin})
     elif [[ -n "$VIRTUAL_ENV" ]]; then
         # Left the project tree: deactivate.
         deactivate >/dev/null 2>&1
