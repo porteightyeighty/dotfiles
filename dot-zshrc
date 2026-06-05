@@ -110,9 +110,6 @@ function _auto_venv() {
         deactivate >/dev/null 2>&1
     fi
 }
-autoload -Uz add-zsh-hook
-add-zsh-hook chpwd _auto_venv
-_auto_venv  # run once for the directory the shell starts in
 
 # Nix (home-manager) profile takes precedence over system & Homebrew tools.
 # macOS path_helper pushes ~/.nix-profile/bin to the back of PATH; re-prepend it
@@ -143,3 +140,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 eval "$(zoxide init --cmd cd zsh)"
 
 SF_AC_ZSH_SETUP_PATH="$HOME/Library/Caches/sf/autocomplete/zsh_setup" && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
+
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd _auto_venv
+_auto_venv  # run once for the directory the shell starts in
