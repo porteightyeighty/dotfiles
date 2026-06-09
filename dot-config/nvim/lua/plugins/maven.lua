@@ -1,10 +1,11 @@
 return {
-	"eatgrass/maven.nvim",
-	cmd = { "Maven", "MavenExec" },
-	dependencies = "nvim-lua/plenary.nvim",
-	config = function()
-		require('maven').setup({
-			executable = "./mvnw"
-		})
-	end
+	"oclay1st/maven.nvim",
+	cmd = { "Maven", "MavenInit", "MavenExec", "MavenFavorites" },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"MunifTanjim/nui.nvim",
+	},
+	opts = {
+		mvn_executable = "./mvnw",
+	},
 }
