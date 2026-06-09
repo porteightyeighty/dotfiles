@@ -53,6 +53,8 @@ return {
 				{ mode = "n", keys = "<Leader>S", desc = "+Salesforce" },
 				{ mode = "n", keys = "<Leader>b", desc = "+Buffer" },
 				{ mode = "n", keys = "<Leader>x", desc = "+Trouble" },
+				{ mode = "n", keys = "<Leader>D", desc = "+Diff" },
+				{ mode = "x", keys = "<Leader>D", desc = "+Diff" },
 				{ mode = "n", keys = "<Leader>cd", desc = "+Debug print" },
 				{ mode = "x", keys = "<Leader>cd", desc = "+Debug print" },
 

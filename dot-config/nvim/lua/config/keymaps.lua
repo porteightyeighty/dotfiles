@@ -46,6 +46,8 @@ vim.keymap.set("n", "<leader>bo", function()
   vim.cmd("%bd")
   if path ~= "" then vim.cmd("e " .. vim.fn.fnameescape(path)) end
 end, { desc = "Close all other buffers" })
+vim.keymap.set("n", "<leader>bs", function() Snacks.scratch() end, { desc = "Toggle scratch buffer" })
+vim.keymap.set("n", "<leader>bS", function() Snacks.scratch.select() end, { desc = "Select scratch buffer" })
 
 -- Splitting & Resizing
 vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
