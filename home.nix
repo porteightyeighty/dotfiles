@@ -122,7 +122,6 @@ in
 
   xdg.configFile."nvim".source = link "dot-config/nvim";
   xdg.configFile."starship.toml".source = link "dot-config/starship.toml";
-  xdg.configFile."alacritty".source = link "dot-config/alacritty";
   xdg.configFile."ghostty".source = link "dot-config/ghostty";
   xdg.configFile."yazi".source = link "dot-config/yazi";
 }
