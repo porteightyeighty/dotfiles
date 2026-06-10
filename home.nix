@@ -26,6 +26,8 @@ in
     wget
     openssl 
     curl
+    bat
+    jless
 
     # Git / dev
     lazygit

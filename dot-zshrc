@@ -69,6 +69,8 @@ export VISUAL=nvim
 
 alias ls='ls --color'
 alias l='ls -lAh --color'
+alias -s md=bat
+alias -s json=jless
 
 # Rebuild/activate the home-manager config (impure: username is read from $USER)
 alias hms='home-manager switch -b backup --flake ~/dotfiles#default --impure'
