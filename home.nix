@@ -72,7 +72,7 @@ in
   # Native module: tmux (replaces tpm + dot-tmux.conf)
   programs.tmux = {
     enable = true;
-    prefix = "C-a";
+    prefix = "C-b";
     plugins = with pkgs.tmuxPlugins; [ sensible vim-tmux-navigator ];
   };
 
