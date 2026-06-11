@@ -1,4 +1,4 @@
-macos-option-as-alt = true
+macos-option-as-alt = left
 
 # Let Option+Left/Right pass through as M-Left/M-Right (ESC[1;3D / ESC[1;3C)
 # instead of Ghostty's default esc:b / esc:f, so tmux prefix+Option+arrow can resize panes.
