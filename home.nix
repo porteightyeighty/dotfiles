@@ -18,7 +18,6 @@ in
     fd
     fzf
     zoxide
-    starship
     yazi
     jq
     tree
@@ -78,6 +77,88 @@ in
     plugins = with pkgs.tmuxPlugins; [ sensible vim-tmux-navigator ];
   };
 
+  # Native module: starship. home-manager renders these settings to
+  # ~/.config/starship.toml. `\$` escapes a literal `$` for nix; `\${count}`
+  # passes a literal `${count}` through to starship's own templating.
+  programs.starship = {
+    enable = true;
+    settings = {
+      right_format = "$time";
+      command_timeout = 5000;
+
+      format = ''
+        [┌─](bold bright-black) $directory$git_branch$git_status$nix_shell$shlvl$nodejs$python$java$lua$rust$package$cmd_duration$custom$status
+        [└─](bold bright-black)$character'';
+
+      directory = {
+        truncation_length = 3;
+        truncate_to_repo = true;
+        style = "cyan";
+        repo_root_style = "bold purple";
+        read_only = " ";
+        repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) ";
+      };
+
+      git_status = {
+        staged = "+\${count}";
+        modified = "!\${count}";
+        deleted = "✘\${count}";
+        renamed = "»\${count}";
+        untracked = "?\${count}";
+        conflicted = "=\${count}";
+        stashed = "\\\$\${count}";
+        ahead = "⇡\${count}";
+        behind = "⇣\${count}";
+        diverged = "⇡\${ahead_count}⇣\${behind_count}";
+      };
+
+      # Warn when this isn't a top-level shell (nix shell, manual subshells, …).
+      # `nix shell` spawns a child shell so SHLVL increments; it sets no marker
+      # env var, so SHLVL is the honest signal. threshold is "show at this depth
+      # or deeper" — tune to (baseline SHLVL of a normal terminal + 1).
+      shlvl = {
+        disabled = false;
+        threshold = 2;
+        symbol = "↕ ";
+        style = "bold yellow";
+        format = "[$symbol$shlvl]($style) ";
+      };
+
+      cmd_duration = {
+        min_time = 200;
+        format = "took [$duration](bold yellow) ";
+      };
+
+      time = {
+        disabled = false;
+        style = "bold bright-black";
+        format = "[$time]($style)";
+      };
+
+      status = {
+        disabled = false;
+        symbol = "✗";
+        style = "bold red";
+        format = "[\\[$symbol$status_common_meaning$status_signal_name$status_maybe_int\\]]($style) ";
+        map_symbol = true;
+      };
+
+      character = {
+        success_symbol = "[➤](bold green)";
+        error_symbol = "[➤](bold red)";
+      };
+
+      custom.sf = {
+        description = "Salesforce target org";
+        detect_files = [ "sfdx-project.json" ];
+        symbol = "☁ ";
+        style = "bold bright-blue";
+        command = "starship-sf-org";
+        format = "using [$symbol$output ](bright-blue)";
+      };
+    };
+  };
+
   # Native module: zsh. home-manager installs zsh from nixpkgs and generates
   # ~/.zshrc; we keep the live-edit workflow by having that generated file
   # `source` the working-tree dot-zshrc (read at shell startup, so edits take
@@ -123,7 +204,6 @@ in
   home.file.".gitignore_global".source = link "dot-gitignore_global";
 
   xdg.configFile."nvim".source = link "dot-config/nvim";
-  xdg.configFile."starship.toml".source = link "dot-config/starship.toml";
   xdg.configFile."ghostty".source = link "dot-config/ghostty";
   xdg.configFile."yazi".source = link "dot-config/yazi";
 }
