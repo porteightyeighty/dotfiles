@@ -4,3 +4,5 @@ macos-option-as-alt = left
 # instead of Ghostty's default esc:b / esc:f, so tmux prefix+Option+arrow can resize panes.
 keybind = alt+left=unbind
 keybind = alt+right=unbind
+
+theme = Dracula

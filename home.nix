@@ -75,6 +75,12 @@ in
     enable = true;
     prefix = "C-b";
     plugins = with pkgs.tmuxPlugins; [ sensible vim-tmux-navigator ];
+    # Required for image.nvim's kitty graphics protocol to pass through tmux
+    # to Ghostty (inline Jupyter/molten plots).
+    extraConfig = ''
+      set -gq allow-passthrough on
+      set -g visual-activity off
+    '';
   };
 
   # Native module: starship. home-manager renders these settings to
