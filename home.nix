@@ -23,8 +23,9 @@ in
     tree
     tldr
     wget
-    openssl 
+    openssl
     curl
+    cacert
     bat
     jless
 
@@ -60,6 +61,28 @@ in
   # rust-analyzer (installed via Mason) needs the std library source to provide
   # completion/hover for std. nixpkgs ships it as a separate path.
   home.sessionVariables.RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
+
+  # nix's OpenSSL curl/git ignore the macOS keychain, so they reject TLS-
+  # intercepting AV/proxies (e.g. Bitdefender) whose CA only lives there.
+  # Build a bundle = nixpkgs roots + whatever the OS trusts, and point OpenSSL
+  # at it. The keychain dump auto-captures any per-machine MITM CA, so it's
+  # portable across machines.
+  home.sessionVariables.SSL_CERT_FILE = "${config.xdg.dataHome}/ca-certificates/bundle.crt";
+  home.sessionVariables.NIX_SSL_CERT_FILE = "${config.xdg.dataHome}/ca-certificates/bundle.crt";
+
+  home.activation.buildCaBundle =
+    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      OUT="${config.xdg.dataHome}/ca-certificates/bundle.crt"
+      $DRY_RUN_CMD mkdir -p "$(dirname "$OUT")"
+      cat "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" > "$OUT"
+      if [ "$(uname)" = "Darwin" ]; then
+        for kc in /Library/Keychains/System.keychain \
+                  /System/Library/Keychains/SystemRootCertificates.keychain \
+                  "$HOME/Library/Keychains/login.keychain-db"; do
+          /usr/bin/security find-certificate -a -p "$kc" 2>/dev/null >> "$OUT" || true
+        done
+      fi
+    '';
 
   # Native module: git. Identity is deliberately kept OUT of the repo: each
   # account supplies its own untracked ~/.config/git/config.local with a [user]
