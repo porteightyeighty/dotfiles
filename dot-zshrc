@@ -79,6 +79,16 @@ alias hms='home-manager switch -b backup --flake ~/dotfiles#default --impure'
 
 # Functions
 
+# nvim profile selector: `nvim min/std FILE` picks a lighter config tier;
+# bare `nvim` stays full. Profile is read by lua/config/lazy.lua via vim.g.profile.
+function nvim() {
+    case "$1" in
+        min|minimal)  shift; command nvim --cmd 'lua vim.g.profile="minimal"' "$@" ;;
+        std|standard) shift; command nvim --cmd 'lua vim.g.profile="standard"' "$@" ;;
+        *)            command nvim "$@" ;;
+    esac
+}
+
 # Open yazi with `y`; cd into the directory yazi was in on quit.
 function y() {
     local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd

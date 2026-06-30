@@ -15,12 +15,20 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Profile (minimal | standard | full) chosen via `nvim --cmd 'lua vim.g.profile=...'`.
+-- core always loads; standard adds editing/nav QoL; full adds language tooling.
+local profile = vim.g.profile or "full"
+local spec = { { import = "plugins.core" } }
+if profile ~= "minimal" then
+	table.insert(spec, { import = "plugins.standard" })
+end
+if profile == "full" then
+	table.insert(spec, { import = "plugins.full" })
+end
+
 -- Setup lazy.nvim
 require("lazy").setup({
-	spec = {
-		-- import your plugins
-		{ import = "plugins" },
-	},
+	spec = spec,
 	-- Configure any other settings here. See the documentation for more details.
 	-- automatically check for plugin updates
 	checker = { enabled = true },
